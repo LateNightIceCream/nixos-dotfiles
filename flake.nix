@@ -8,7 +8,6 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     hyprland.url = "github:hyprwm/Hyprland";
-
   };
 
   outputs = inputs @ { nixpkgs, home-manager, flake-parts, ... }: 
@@ -17,7 +16,7 @@
     user = "zamza";
 
     system = "x86_64-linux";
-    
+
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
@@ -25,8 +24,6 @@
 
   in
   {
-   nixosConfigurations = import ./hosts { 
-	 inherit system nixpkgs inputs user; 
-   };
+    nixosConfigurations = import ./hosts { inherit system nixpkgs inputs user ; };
   };
 }

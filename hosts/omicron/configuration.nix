@@ -11,6 +11,7 @@
       ./hardware-configuration.nix
     ];
 
+  hardware.bluetooth.enable = true;
 
   ## -----------------------------------------------------------------------
   ## BOOTLOADER
@@ -89,17 +90,44 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
+
      vim
      wget
      git
      xdg-utils
      glib
+     gtk3
+     gtk4
+     libnotify
+     wl-clipboard
+     wlr-randr
+     wayland
+     wayland-scanner
+     wayland-utils
+     egl-wayland
+     wayland-protocols
+     xwayland
+     glfw-wayland
+     networkmanagerapplet
+     lxappearance
+     pavucontrol
+     cacert # for eduroam
      # hyprland # this is most likely very outdated! so dont use it
-     kitty
   ];
+
+  fonts.fonts = with pkgs; [
+
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    liberation_ttf
+    jetbrains-mono
+
+  ];
+
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ user ];
 
 
   ## -----------------------------------------------------------------------
@@ -117,6 +145,7 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+  security.rtkit.enable = true;
   services = {
     pipewire = {
       enable = true;
@@ -127,6 +156,16 @@
     };
   };
 
+  services.blueman.enable = true;
+
+  programs.light.enable = true;
+  services.actkbd = {
+    enable = true;
+    bindings = [
+      { keys = [ 233 ]; events = [ "key" ]; command = "/run/wrappers/bin/light -A 10"; }
+      { keys = [ 232 ]; events = [ "key" ]; command = "/run/wrappers/bin/light -U 10"; }
+    ];
+  };
 
   ## -----------------------------------------------------------------------
   ## OTHER OPTIONS
@@ -134,11 +173,11 @@
 
   hardware.opengl.enable = true;
 
-  xdg.portal = {
-     enable = true;
-     wlr.enable = true;
-     extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
-  };
+  #xdg.portal = {
+  #  enable = true;
+  #  wlr.enable = true;
+  #  extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
+  #};
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

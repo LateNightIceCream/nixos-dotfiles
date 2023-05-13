@@ -6,8 +6,11 @@
     neovim = {
       enable = true;
       withPython3 = true;
+      viAlias = true;
+      vimAlias = true;
+
       plugins = with pkgs.vimPlugins; [
-              ];
+      ];
     };
   };
 
@@ -23,5 +26,7 @@
       nixpkgs-fmt
     ];
   };
+
+  home.file.".config/nvim/init.lua".source = ./lua/options.lua;
 
 }
