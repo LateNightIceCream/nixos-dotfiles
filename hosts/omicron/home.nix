@@ -41,14 +41,22 @@ in
     texlive.combined.scheme-full
     zathura
     libreoffice
+    nnn
+    pympress
+    godot_4
+    pamixer
 	];
 
 
   gtk = { # TODO: put this into separate module, perhaps to theme
     enable = true;
     theme = {
-      name = "colloid-gtk";
+      name = "Colloid-Dark";
       package = pkgs.colloid-gtk-theme;
+    };
+    iconTheme = {
+      name = "Colloid-dark";
+      package = colloid-icon-theme;
     };
   };
 
@@ -61,6 +69,23 @@ in
 
   programs.bash.enable = true;
   programs.bash.enableCompletion = true;
+
+  xdg = {
+    enable = true;
+
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+      desktop = "$HOME/Desktop";
+      download = "$HOME/Downloads";
+      documents = "$HOME/Documents";
+      # templates = "$HOME/Templates";
+      music = "$HOME/Music";
+      videos = "$HOME/Videos";
+      pictures = "$HOME/Pictures";
+      # publicShare = "$HOME/share/public";
+    };
+  };
 
  	imports = [
           (import ../../modules/editors/nvim)

@@ -5,11 +5,17 @@
   programs = {
     neovim = {
       enable = true;
-      withPython3 = true;
       viAlias = true;
       vimAlias = true;
 
+      withPython3 = true;
+
+      extraPython3Packages = pyPkgs: with pyPkgs; [
+        pylint
+      ];
+
       plugins = with pkgs.vimPlugins; [
+        yankring
       ];
     };
   };
