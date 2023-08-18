@@ -1,10 +1,8 @@
-{system, nixpkgs, inputs, user, ...}:
+{system, nixpkgs, pkgs, inputs, user, ...}:
 
 let
-  pkgs = import nixpkgs {
-    inherit system;
-    config.allowUnfree = true;
-  };
+  # colors = import ../modules/themes/default/colors.nix;
+  nix-colors = inputs.nix-colors;
 in
 {
 
@@ -28,7 +26,7 @@ in
           useGlobalPkgs = true;
           useUserPackages = true;
 
-          extraSpecialArgs = { inherit inputs user; };
+          extraSpecialArgs = { inherit inputs user nix-colors; };
           users.${user} = import ./omicron/home.nix;
 
         };

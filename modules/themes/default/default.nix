@@ -1,12 +1,9 @@
-{ lib, pkgs, user, home, ... }:
-
+{ lib, pkgs, config, user, home, ... }:
+#{ config, pkgs, inputs, user, colors, ... }:
 {
   imports = [
     ./programs/rofi
+    ./programs/kitty
+    ./programs/neovim
   ];
-
-  #config.colors = mkOption {
-  #  default = { };
-  #  col1 = {"hello"};
-  #};
 }

@@ -1,11 +1,6 @@
 { config, pkgs, inputs, user, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
-    waybar
-  ];
-
-  home-manager.users.${user} = {
     # Home-manager waybar config
     programs.waybar = {
 
@@ -19,7 +14,7 @@
       };
 
       #style = builtins.readFile ./config/style.css;    
-      #style = (import ./config/style.nix.css) {inherit config;};    
+      style = (import ./config/style.nix.css) {inherit config;};    
       #style = ''
       #* {
 #
@@ -32,7 +27,7 @@
         mainBar = {
           layer = "top";
           position = "top";
-          height = 30;
+          height = 32;
 
           modules-left = [
             "wlr/workspaces"
@@ -43,23 +38,64 @@
 
           modules-right = [
             "battery"
+            "pulseaudio"
             "backlight"
+            "clock"
           ];
 
-          "hyprland/workspaces" = {
-            format = "{id}: {icon}";
+          "wlr/workspaces" = {
+            format = "{icon}";
+            on-click = "activate";
             format-icons = {
-              "1" = "";
-              "2" = "";
-              "3" = "";
-              "4" = "";
-              "5" = "";
-              "active" = "";
+              "1" = "一";
+              "2" = "二";
+              "3" = "三";
+              "4" = "四";
+              "5" = "五";
+              "6" = "六";
+              "7" = "七";
+              "8" = "八";
+              "9" = "九";
+              "10" = "十";
+              "urgent" = "";
+              #"active" = "";
               "default" = "";
             };
+          sort-by-number = true;
           };
 
+          "backlight" = {
+            "device" = "intel_backlight";
+            "on-scroll-up" = "light -A 5";
+            "on-scroll-down" = "light -U 5";
+            "format" = "{icon} {percent}%";
+            "format-icons" = [ "" ];
+            #"format-icons" = [ "" "" "" ];
+          };
+
+          "clock" = {
+              "interval" = 60;
+              "tooltip" = true;
+              "format" = " {:%H//%M}";
+              "tooltip-format" = " {:%d.%m.%Y}";
+              "locale" = "en_US.UTF-8";
+          };
+
+        "pulseaudio" = {
+          "scroll-step" = 1;
+          "format" = "{icon} {volume}%";
+          "format-muted" = "婢 Muted";
+          "format-icons" = {
+            "default" = [ "" "" "" ];
+          };
+
+
         };
+
+      };
+      };
+};
+}
 
 #      "layer" = "top";
 #      "position" = "top";
@@ -210,7 +246,4 @@
 #      "icon-size" = 15;
 #      "spacing" = 5;
 #      };
-      };
-      };
-    };
-}
+

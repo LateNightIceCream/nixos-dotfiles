@@ -8,7 +8,7 @@
       enable = true;
       environment = { };
       keybindings = { };
-      extraConfig = builtins.readFile ./config/kitty.conf;
+      # extraConfig = builtins.readFile ./config/kitty.conf;
     };
 
   };

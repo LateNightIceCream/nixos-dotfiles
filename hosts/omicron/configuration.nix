@@ -79,7 +79,7 @@
     isNormalUser = true;
     description = "${user}";
     extraGroups = [ "networkmanager" "wheel" "audio" "video" ];
-    packages = with pkgs; [];
+    # packages = with pkgs; [];
   };
 
 
@@ -88,7 +88,7 @@
   ## -----------------------------------------------------------------------
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  # nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
 
@@ -121,8 +121,12 @@
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
+    source-han-sans
     liberation_ttf
     jetbrains-mono
+    (import ../../pkgs/lucide-icon-font {inherit stdenv fetchzip;})
+    #lucide-icon-font
+    font-awesome_5
 
   ];
 

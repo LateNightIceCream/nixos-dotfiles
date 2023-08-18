@@ -16,6 +16,14 @@
 
       plugins = with pkgs.vimPlugins; [
         yankring
+        nvim-highlight-colors
+        lush-nvim
+        rose-pine
+        zenbones-nvim
+        vim-hexokinase
+        friendly-snippets
+        luasnip
+        # cmp_luasnip
       ];
     };
   };

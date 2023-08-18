@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, user, ... }:
+{ config, pkgs, inputs, user, nix-colors, ... }:
 
 with pkgs;
 let
@@ -45,6 +45,7 @@ in
     pympress
     godot_4
     pamixer
+    font-manager
 	];
 
 
@@ -87,13 +88,19 @@ in
     };
   };
 
+  colorScheme = import ../../modules/themes/default/colorscheme.nix;
+
  	imports = [
+          nix-colors.homeManagerModules.default
           (import ../../modules/editors/nvim)
           (import ../../modules/desktop/hyprland/home.nix)
           (import ../../modules/programs/kitty)
           (import ../../modules/programs/alacritty)
           inputs.hyprland.homeManagerModules.default
+          (import ../../modules/themes/default)
   ];
+
+  # programs // (import ../../modules/themes/default { inherit programs; });
 
 
   ## -----------------------------------------------------------------------

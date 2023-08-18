@@ -8,22 +8,30 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     hyprland.url = "github:hyprwm/Hyprland";
+
+    nix-colors.url = "github:/Misterio77/nix-colors";
   };
 
-  outputs = inputs @ { nixpkgs, home-manager, flake-parts, ... }: 
+  outputs = inputs @ { nixpkgs, home-manager, ... }: 
   let
 
     user = "zamza";
 
     system = "x86_64-linux";
 
+    myOverlay = import ./pkgs;
+
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
+      overlays = [
+        myOverlay
+      ];
     };
 
   in
   {
-    nixosConfigurations = import ./hosts { inherit system nixpkgs inputs user; };
+    overlays.default = myOverlay;
+    nixosConfigurations = import ./hosts { inherit system nixpkgs pkgs inputs user; };
   };
 }

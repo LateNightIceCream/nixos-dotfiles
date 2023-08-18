@@ -5,7 +5,8 @@
   imports = [
     (import ../../environment/hyprland-environment-variables.nix)
     (import ../../programs/wayland/launcher/rofi)
-    (import ../../themes/default)
+    #(import ../../themes/default)
+    (import ../../programs/waybar/home.nix)
   ];
 
   programs = {

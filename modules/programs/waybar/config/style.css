@@ -1,6 +1,6 @@
 * {
   font-family: "JetBrains Mono";
-  font-size: 12pt;
+  font-size: 11pt;
   font-weight: bold;
   border-radius: 0px;
   transition-property: background-color;
@@ -9,7 +9,8 @@
 
 @keyframes blink_red {
   to {
-    background-color: rgb(242, 143, 173);
+    /* background-color: rgb(242, 143, 173); */
+    background-color: ${color0};
     color: rgb(26, 24, 38);
   }
 }

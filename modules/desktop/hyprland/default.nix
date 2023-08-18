@@ -3,7 +3,7 @@
 {
 
   imports = [
-    (import ../../programs/waybar/hyprland_waybar.nix)
+    #(import ../../programs/waybar/hyprland_waybar.nix)
   ];
 
   programs = {
@@ -13,6 +13,7 @@
 
   environment.systemPackages = with pkgs; [
     hyprpaper
+    waybar
   ];
 
   xdg.portal = {
