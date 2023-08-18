@@ -1,10 +1,8 @@
-{system, nixpkgs, inputs, user, ...}:
+{system, nixpkgs, pkgs, inputs, user, ...}:
 
 let
-  pkgs = import nixpkgs {
-    inherit system;
-    config.allowUnfree = true;
-  };
+  # colors = import ../modules/themes/default/colors.nix;
+  nix-colors = inputs.nix-colors;
 in
 {
 
@@ -18,17 +16,20 @@ in
       ./omicron/configuration.nix
 
       inputs.hyprland.nixosModules.default
-      {
-        programs.hyprland.enable = true;
-      }
+
+      ../modules/desktop/hyprland
 
       inputs.home-manager.nixosModules.home-manager
       {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
+        home-manager = {
 
-	home-manager.extraSpecialArgs = { inherit inputs user; };
-        home-manager.users.${user} = import ./omicron/home.nix;
+          useGlobalPkgs = true;
+          useUserPackages = true;
+
+          extraSpecialArgs = { inherit inputs user nix-colors; };
+          users.${user} = import ./omicron/home.nix;
+
+        };
       }
 
     ];
