@@ -1,4 +1,0 @@
-warning: Git tree '/home/zamza/flake4' is dirty
-building the system configuration...
-warning: Git tree '/home/zamza/flake4' is dirty
-error: interrupted by the user

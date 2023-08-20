@@ -5,5 +5,6 @@
     ./programs/rofi
     ./programs/kitty
     ./programs/neovim
+    ./programs/fzf
   ];
 }

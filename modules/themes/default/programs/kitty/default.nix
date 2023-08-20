@@ -7,26 +7,53 @@
     font.size = 10;
 
     settings = {
-      window_padding_width = "16 24";
+
+      bold_font = "JetBrains Mono Bold";
+
+      window_padding_width = "8 24";
       # colors
       foreground = "#${config.colorScheme.colors.base05}";
       background = "#${config.colorScheme.colors.base00}";
+
+      selection_foreground = "#${config.colorScheme.colors.base05}";
+      selection_background = "#${config.colorScheme.colors.base0F}";
+
+      cursor = "#${config.colorScheme.colors.base07}";
+      cursor_text_color = "#${config.colorScheme.colors.base05}";
+
+      url_color = "#${config.colorScheme.colors.base0D}";
+
+      # black
       color0 = "#${config.colorScheme.colors.base00}";
-      color1 = "#${config.colorScheme.colors.base01}";
-      color2 = "#${config.colorScheme.colors.base0C}";
-      color3 = "#${config.colorScheme.colors.base03}";
-      color4 = "#${config.colorScheme.colors.base04}";
-      color5 = "#${config.colorScheme.colors.base05}";
-      color6 = "#${config.colorScheme.colors.base06}";
-      color7 = "#${config.colorScheme.colors.base07}";
-      color8 = "#${config.colorScheme.colors.base08}";
-      color9 = "#${config.colorScheme.colors.base09}";
-      color10 = "#${config.colorScheme.colors.base0A}";
-      color11 = "#${config.colorScheme.colors.base0B}";
+      color8 = "#${config.colorScheme.colors.base0A}";
+
+      # red
+      color1 = "#${config.colorScheme.colors.base0A}";
+      color9 = "#${config.colorScheme.colors.base0A}";
+
+      # green
+      color2 = "#${config.colorScheme.colors.base0B}";
+      color10 = "#${config.colorScheme.colors.base0B}";
+
+      # yellow
+      color3 = "#${config.colorScheme.colors.base09}";
+      color11 = "#${config.colorScheme.colors.base09}";
+
+      # blue
+      color4 = "#${config.colorScheme.colors.base0C}";
       color12 = "#${config.colorScheme.colors.base0C}";
+
+      # magenta
+      color5 = "#${config.colorScheme.colors.base0D}";
       color13 = "#${config.colorScheme.colors.base0D}";
-      color14 = "#${config.colorScheme.colors.base0E}";
-      color15 = "#${config.colorScheme.colors.base0F}";
+
+      # cyan
+      color6 = "#${config.colorScheme.colors.base0A}";
+      color14 = "#${config.colorScheme.colors.base0A}";
+
+      # white
+      color7 = "#${config.colorScheme.colors.base05}";
+      color15 = "#${config.colorScheme.colors.base0A}";
     };
 
   };

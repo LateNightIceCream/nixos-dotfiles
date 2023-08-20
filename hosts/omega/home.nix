@@ -12,7 +12,7 @@ in
 
 	home.username = "${user}";
 	home.homeDirectory = "/home/${user}";
-	home.stateVersion = "22.11";
+	home.stateVersion = "23.05";
 
 
   ## -----------------------------------------------------------------------
@@ -41,14 +41,21 @@ in
     texlive.combined.scheme-full
     zathura
     libreoffice
-    nnn
-    pympress
     godot_4
+    joshuto
     pamixer
     font-manager
+    platformio
+    gnome.seahorse
+    imagemagick
+    image-roll
+    keepassxc
+    gscreenshot
+    slurp
+    grim
     cmatrix
-    cava
     pipes
+    cava
 	];
 
 
@@ -73,6 +80,8 @@ in
 
   programs.bash.enable = true;
   programs.bash.enableCompletion = true;
+  programs.fzf.enable = true;
+  programs.fzf.enableBashIntegration = true;
 
   xdg = {
     enable = true;
@@ -96,9 +105,10 @@ in
  	imports = [
           nix-colors.homeManagerModules.default
           (import ../../modules/editors/nvim)
-          (import ../../modules/desktop/hyprland/home.nix)
+          (import ../../modules/desktop/hyprland-nvidia/home.nix)
           (import ../../modules/programs/kitty)
           (import ../../modules/programs/alacritty)
+          #(import ../../modules/programs/spotify)
           inputs.hyprland.homeManagerModules.default
           (import ../../modules/themes/default)
   ];
@@ -109,5 +119,6 @@ in
   ## -----------------------------------------------------------------------
 	## SERVICES
   ## -----------------------------------------------------------------------
+
 
 }

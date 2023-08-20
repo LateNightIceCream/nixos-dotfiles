@@ -2,7 +2,7 @@
 
 let
   pkgs = import <nixpkgs> { };
-  lucideVersion = "v0.264.0";
+  lucideVersion = "v0.268.0"; # i think the "v" is wrong
 in
 stdenv.mkDerivation {
   pname = "lucide-icon-font";
