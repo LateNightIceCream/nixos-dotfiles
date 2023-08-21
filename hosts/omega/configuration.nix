@@ -113,7 +113,7 @@
      networkmanagerapplet
      lxappearance
      pavucontrol
-     cacert # for eduroam
+     killall
      # hyprland # this is most likely very outdated! so dont use it
   ];
 

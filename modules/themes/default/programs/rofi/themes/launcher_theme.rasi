@@ -7,21 +7,10 @@ configuration {
 
 @theme "/dev/null"
 
+@import "colors"
+
 * {
-    fg: #212529;
-    bg: #f8f9fa;
-    accent: #ffec99;
-    fg-hover: @fg;
-    bg-hover: @bg;
-    fg-unhover: @bg;
-    bg-unhover: #e9ecef;
-
-    accent-bg:    @accent;
-    accent-fg:    @fg;
-    bg-border:    @bg-unhover;
-
     spacing:          10;
-
     background-color: @bg;
 }
 
