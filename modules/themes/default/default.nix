@@ -6,5 +6,8 @@
     ./programs/kitty
     ./programs/neovim
     ./programs/fzf
+    ./programs/gtk
+    ./programs/bash
+    ./programs/hyprland
   ];
 }

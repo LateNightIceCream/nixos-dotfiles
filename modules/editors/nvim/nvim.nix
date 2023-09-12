@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-
   programs = {
     neovim = {
       enable = true;
@@ -9,6 +8,11 @@
       vimAlias = true;
 
       withPython3 = true;
+
+      extraPackages = with pkgs; [
+        python311Packages.python-lsp-server
+        ripgrep
+      ];
 
       extraPython3Packages = pyPkgs: with pyPkgs; [
         pylint
@@ -22,9 +26,33 @@
         zenbones-nvim
         vim-hexokinase
         friendly-snippets
+        nvim-lspconfig
+        nvim-cmp
         luasnip
-        # cmp_luasnip
+        cmp-nvim-lsp
+        cmp-buffer
+        cmp-path
+        cmp-cmdline
+        cmp_luasnip
+        #cmp-treesitter;
+        nvim-treesitter
+        (nvim-treesitter.withPlugins (p: [ p.c p.cpp p.rust p.python p.nix p.css ]))
+        vim-ccls
+        # vim-lsp
+        # rust-vim
+        #deoplete-nvim
+        #deoplete-vim-lsp
+        fzf-vim
+        indentLine
+        nvim-autopairs
       ];
+
+      extraLuaConfig = ''
+        require("options")
+        require("plugins")
+        require("keybindings")
+      '';
+
     };
   };
 
@@ -32,8 +60,8 @@
     packages = with pkgs; [
       rnix-lsp
       pyright
-      rust-analyzer
-      rustfmt
+      #rust-analyzer
+      #rustfmt
       clang-tools
       tree-sitter
       black
@@ -41,6 +69,7 @@
     ];
   };
 
-  home.file.".config/nvim/init.lua".source = ./lua/options.lua;
+  #home.file.".config/nvim/init.lua".source = ./lua/options.lua;
+  home.file.".config/nvim/lua".source = ./lua;
 
 }

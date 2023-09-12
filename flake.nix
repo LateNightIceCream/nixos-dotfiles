@@ -12,26 +12,24 @@
     nix-colors.url = "github:/Misterio77/nix-colors";
   };
 
-  outputs = inputs @ { nixpkgs, home-manager, ... }: 
+  outputs = inputs @ { nixpkgs, home-manager, self, ... }: 
   let
 
     user = "zamza";
 
     system = "x86_64-linux";
 
-    myOverlay = import ./pkgs;
-
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
       overlays = [
-        myOverlay
+        self.overlays.default
       ];
     };
 
   in
   {
-    overlays.default = myOverlay;
-    nixosConfigurations = import ./hosts { inherit system nixpkgs pkgs inputs user; };
+    overlays.default = (import ./pkgs).overlay;
+    nixosConfigurations = import ./hosts { inherit system self nixpkgs pkgs inputs user; };
   };
 }

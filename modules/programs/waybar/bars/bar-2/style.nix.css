@@ -7,16 +7,17 @@
     font-family: "JetBrains Mono", "Noto Sans CJK HK", "Font Awesome 5 Free"; /*"lucide";*/
     font-size: 11px;
     font-style: normal;
-    min-height: 0;
+    min-height: 32px;
 }
 
 window#waybar {
     background: #${config.colorScheme.colors.base00};
-    background: transparent;
+    /*background: transparent;*/
     /*background: rgba(30, 30, 46, 0.5);*/
     color: #${config.colorScheme.colors.base05};
     /*padding-top: 8px;*/
     margin-top: 0px;
+    border-radius: 0px 0px 20px 20px;
 }
 
 #workspaces {
@@ -28,7 +29,7 @@ window#waybar {
   /*border: solid 6px #${config.colorScheme.colors.base02};*/
 
   border: solid 2px #${config.colorScheme.colors.base02};
-  border-radius: 16px;
+  border-radius: 20px;
   padding-left: 16px;
   padding-right: 16px;
   padding-top: 4px;
@@ -42,7 +43,7 @@ window#waybar {
 
 #workspaces button {
     /*padding: 0px 5px;*/
-    border-radius: 16px;
+    border-radius: 20px;
     color: #928374;
     min-width: 16px;
 }
@@ -59,7 +60,7 @@ window#waybar {
 #workspaces button:hover {
   background-color: #${config.colorScheme.colors.base08};
   color: #${config.colorScheme.colors.base00};
-	border-radius: 12px;
+	border-radius: 16px;
 }
 
 /*#custom-date, #clock, #battery, #pulseaudio, #network, #custom-randwall, #custom-launcher {
@@ -86,13 +87,12 @@ window#waybar {
 #clock {
     color: #${config.colorScheme.colors.base05};
     background-color: #${config.colorScheme.colors.base00};
-    border: 1px solid #${config.colorScheme.colors.base02};
-    border-radius: 16px;
+    /*border: 1px solid #${config.colorScheme.colors.base02};*/
+    border-radius: 0px 0px 20px 20px;
     padding-left: 16px;
     padding-right: 16px;
     margin-right: 16px;
-    margin-top: 8px;
-    margin-bottom: 14px;
+    margin-top: 0px;
     margin-bottom: 0px;
     font-weight: bold;
     /*border-left: solid 1px #282738;*/

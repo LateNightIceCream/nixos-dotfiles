@@ -10,6 +10,9 @@
 
       bold_font = "JetBrains Mono Bold";
 
+      # symbol_map codepoints Font Family Name
+      symbol_map  = "U+F264,U+F2FA,U+F510,U+F20B,U+F28E,U+F42F,U+F230 lucide";
+
       window_padding_width = "8 24";
       # colors
       foreground = "#${config.colorScheme.colors.base05}";

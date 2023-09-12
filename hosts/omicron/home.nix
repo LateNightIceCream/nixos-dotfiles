@@ -49,6 +49,11 @@ in
     cmatrix
     cava
     pipes
+    ccls
+    texlab
+    gcc
+    cmake
+    clang
 	];
 
 

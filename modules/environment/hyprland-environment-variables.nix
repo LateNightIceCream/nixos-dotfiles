@@ -5,6 +5,9 @@
   home = {
     sessionVariables = {
 
+      # this has to be set for some reason?
+      GTK_THEME = "Colloid-Custom";
+
       EDITOR = "nvim";
       BROWSER = "firefox";
       TERMINAL = "kitty";

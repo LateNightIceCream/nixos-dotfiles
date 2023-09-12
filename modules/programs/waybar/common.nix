@@ -1,7 +1,8 @@
 { pkgs, inputs, ... }:
 
 {
-  package = inputs.hyprland.packages.${pkgs.system}.waybar-hyprland;
+  #package = inputs.hyprland.packages.${pkgs.system}.waybar-hyprland;
+  package = pkgs.waybar;
 
   enable = true;
 

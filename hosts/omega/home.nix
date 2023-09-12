@@ -7,6 +7,7 @@ let
         ggplot2
       ];
     };
+
 in
 {
 
@@ -27,15 +28,13 @@ in
 		gnome.nautilus	
     gnome.gnome-calendar
     inkscape
-		python311
-    #(python3.withPackages my-python-packages)
-    #(python311.withPackages(ps: with ps; [ simpy ]))
     logseq
     tdesktop # telegram
     R
     R-with-my-packages
     yt-dlp
     mpv
+    celluloid
     #vmware-horizon-client
     libsForQt5.qt5.qtwayland
     texlive.combined.scheme-full
@@ -45,7 +44,6 @@ in
     joshuto
     pamixer
     font-manager
-    platformio
     gnome.seahorse
     imagemagick
     image-roll
@@ -56,20 +54,23 @@ in
     cmatrix
     pipes
     cava
+    ccls
+    texlab
+    gcc
+    cmake
+    #clang
+    inkscape
+    gimp
+    gnumake
+    gnome.gnome-calculator
+    rustup
+    cambalache
+    obs-studio
+    drawio
+    poppler_utils
+
+    nodejs_20
 	];
-
-
-  gtk = { # TODO: put this into separate module, perhaps to theme
-    enable = true;
-    theme = {
-      name = "Colloid-Dark";
-      package = pkgs.colloid-gtk-theme;
-    };
-    iconTheme = {
-      name = "Colloid-dark";
-      package = colloid-icon-theme;
-    };
-  };
 
 
   ## -----------------------------------------------------------------------
@@ -82,6 +83,10 @@ in
   programs.bash.enableCompletion = true;
   programs.fzf.enable = true;
   programs.fzf.enableBashIntegration = true;
+
+  home.shellAliases = {
+    ssh = "kitty + kitten ssh";
+  };
 
   xdg = {
     enable = true;
@@ -107,11 +112,16 @@ in
           (import ../../modules/editors/nvim)
           (import ../../modules/desktop/hyprland-nvidia/home.nix)
           (import ../../modules/programs/kitty)
+          (import ../../modules/programs/sioyek)
           (import ../../modules/programs/alacritty)
           #(import ../../modules/programs/spotify)
           inputs.hyprland.homeManagerModules.default
           (import ../../modules/themes/default)
   ];
+
+
+
+
 
   # programs // (import ../../modules/themes/default { inherit programs; });
 

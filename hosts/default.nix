@@ -1,4 +1,4 @@
-{system, nixpkgs, pkgs, inputs, user, ...}:
+{ system, self, nixpkgs, pkgs, inputs, user, ... }:
 
 let
   # colors = import ../modules/themes/default/colors.nix;
@@ -61,6 +61,11 @@ in
           users.${user} = import ./omega/home.nix;
 
         };
+
+        nixpkgs.overlays = [ 
+          self.overlays.default 
+        ] ++ (import ../overlays) { inherit pkgs; importColors = import ../modules/themes/default/colorscheme.nix; };
+
       }
 
     ];

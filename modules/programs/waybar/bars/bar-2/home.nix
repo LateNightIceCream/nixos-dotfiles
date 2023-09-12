@@ -12,22 +12,29 @@
           position = "top";
           height = 32;
 
+          margin-left = 733;
+          margin-right = 733;
+
           modules-left = [
-            "wlr/workspaces"
+            # will only work with waybar>9.22 -> lets wait for nixpkgs stable
+            "hyprland/workspaces" 
           ];
 
           modules-center = [
           ];
 
           modules-right = [
-            #"pulseaudio"
+            "cpu"
+            "pulseaudio"
             "clock"
           ];
 
-          "wlr/workspaces" = import ../../modules/workspace.nix;
+          "hyprland/workspaces" = import ../../modules/workspace.nix;
           "backlight" = import ../../modules/backlight.nix;
           "clock" = import ../../modules/clock.nix;
           "pulseaudio" = import ../../modules/pulseaudio.nix;
+          "memory" = import ../../modules/memory.nix;
+          "cpu" = import ../../modules/cpu.nix;
 
         };
 

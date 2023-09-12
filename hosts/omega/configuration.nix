@@ -4,6 +4,17 @@
 
 { config, pkgs, inputs, user, ... }:
 
+let
+
+  my-python-packages = ps: with ps; [
+    pandas
+    requests
+    setuptools
+    pyserial
+    pymupdf
+  ];
+
+in
 {
 
   imports =
@@ -79,7 +90,7 @@
   users.users.${user} = {
     isNormalUser = true;
     description = "${user}";
-    extraGroups = [ "networkmanager" "wheel" "audio" "video" "dialout"  ];
+    extraGroups = [ "networkmanager" "wheel" "audio" "video" "dialout" "docker" ];
     # packages = with pkgs; [];
   };
 
@@ -87,9 +98,6 @@
   ## -----------------------------------------------------------------------
   ## PACKAGES
   ## -----------------------------------------------------------------------
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
 
@@ -110,30 +118,46 @@
      wayland-protocols
      xwayland
      glfw-wayland
+     # hyprland # this is most likely very outdated! so dont use it
      networkmanagerapplet
      lxappearance
      pavucontrol
      killall
-     # hyprland # this is most likely very outdated! so dont use it
+     ncurses5
+     flex
+     bison
+
+     (python3.withPackages my-python-packages)
+     #platformio
+     scons
+
+     skopeo
   ];
 
   fonts.fonts = with pkgs; [
-
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
     source-han-sans
     liberation_ttf
     jetbrains-mono
-    #(import ../../pkgs/lucide-icon-font {inherit stdenv fetchzip;})
-    #lucide-icon-font
     font-awesome_5
-
+    nerdfonts
+  ] ++ [
+    lucide-icon-font
   ];
 
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ user ];
 
+  virtualisation.docker.enable = true;
+  #virtualisation.docker.rootless = {
+  #  enable = true;
+  #  setSocketVariable = true;
+  #};
+
+  # https://nix-community.github.io/home-manager/options.html#opt-programs.bash.enableCompletion
+  environment.pathsToLink = [ "/share/bash-completion" ];
 
   ## -----------------------------------------------------------------------
   ## SERVICES
@@ -176,7 +200,12 @@
   # gnome keyring
   services.gnome.gnome-keyring.enable = true;
 
-  services.udev.packages = [ pkgs.platformio-core.udev ];
+  services.udev.packages = [ 
+    #pkgs.platformio-core.udev
+    #pkgs.openocd
+  ];
+
+  programs.dconf.enable = true;
 
 
   ## -----------------------------------------------------------------------
@@ -198,6 +227,7 @@
   };
 
   hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ vaapiIntel ];
+
 
 #  services.xserver.videoDrivers = [ "nvidia" ];
 
