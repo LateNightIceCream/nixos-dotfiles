@@ -1,6 +1,8 @@
 { config, pkgs, inputs, user, ... }:
 
 {
+    home.file.".config/waybar/scripts/sit-stand-reminder.py".source = ../../modules/scripts/sit-stand-reminder.py;
+
     programs.waybar = import ../../common.nix { inherit pkgs inputs; } // {
 
       style = (import ./style.nix.css) { inherit config; };
@@ -24,8 +26,9 @@
           ];
 
           modules-right = [
-            "cpu"
+            #"cpu"
             "pulseaudio"
+            "custom/sit-stand-reminder"
             "clock"
           ];
 
@@ -35,6 +38,7 @@
           "pulseaudio" = import ../../modules/pulseaudio.nix;
           "memory" = import ../../modules/memory.nix;
           "cpu" = import ../../modules/cpu.nix;
+          "custom/sit-stand-reminder" = import ../../modules/sit-stand-reminder.nix;
 
         };
 

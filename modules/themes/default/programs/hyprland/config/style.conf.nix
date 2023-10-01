@@ -2,8 +2,8 @@
 
 ''
   general {
-    col.active_border = rgba(${config.colorScheme.colors.base0A}ff)
-    col.inactive_border = rgba(${config.colorScheme.colors.base0C}ff)
+    col.active_border = rgba(${config.colorScheme.colors.base09}ff)
+    col.inactive_border = rgba(${config.colorScheme.colors.base00}ff)
   }
 
   decoration {

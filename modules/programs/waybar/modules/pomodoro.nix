@@ -1,0 +1,4 @@
+{
+    "format" = "{}";
+    "exec" = "pomodoro";
+}

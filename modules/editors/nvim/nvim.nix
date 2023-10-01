@@ -38,10 +38,6 @@
         nvim-treesitter
         (nvim-treesitter.withPlugins (p: [ p.c p.cpp p.rust p.python p.nix p.css ]))
         vim-ccls
-        # vim-lsp
-        # rust-vim
-        #deoplete-nvim
-        #deoplete-vim-lsp
         fzf-vim
         indentLine
         nvim-autopairs

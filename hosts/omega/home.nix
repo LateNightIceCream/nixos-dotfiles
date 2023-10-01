@@ -68,8 +68,14 @@ in
     obs-studio
     drawio
     poppler_utils
-
     nodejs_20
+    webcamoid
+    wl-clipboard
+    kicad
+    guitarix
+    qjackctl
+    jack2
+    evolution
 	];
 
 
@@ -130,5 +136,6 @@ in
 	## SERVICES
   ## -----------------------------------------------------------------------
 
+  services.mako.enable = true;
 
 }
