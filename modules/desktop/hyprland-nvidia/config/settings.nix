@@ -71,6 +71,10 @@
     new_is_master = true;
   };
 
+  windowrule = [
+    "float,^(kitty)$"
+  ];
+
   bind = [
     # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
     "$mod, return, exec, kitty"

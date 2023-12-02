@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
     home-manager.url = "github:nix-community/home-manager/release-23.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -12,12 +13,15 @@
     nix-colors.url = "github:/Misterio77/nix-colors";
   };
 
-  outputs = inputs @ { nixpkgs, home-manager, self, ... }: 
+  outputs = inputs @ { nixpkgs, nixpkgs-unstable, home-manager, self, ... }: 
   let
 
     user = "zamza";
 
     system = "x86_64-linux";
+
+    overlay-unstable = final: prev: {
+    };
 
     pkgs = import nixpkgs {
       inherit system;
@@ -27,9 +31,11 @@
       ];
     };
 
+    pkgs-unstable = import inputs.nixpkgs-unstable { inherit system; };
+
   in
   {
     overlays.default = (import ./pkgs).overlay;
-    nixosConfigurations = import ./hosts { inherit system self nixpkgs pkgs inputs user; };
+    nixosConfigurations = import ./hosts { inherit system self nixpkgs pkgs pkgs-unstable inputs user; };
   };
 }

@@ -3,7 +3,7 @@
 {
   programs.kitty = {
 
-    font.name = "JetBrains Mono Medium";
+    font.name = "JetBrains Mono Regular";
     font.size = 10;
 
     settings = {

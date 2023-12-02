@@ -17,6 +17,10 @@ let
 in
 {
 
+  ## -----------------------------------------------------------------------
+  ## HARDWARE
+  ## -----------------------------------------------------------------------
+
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -25,6 +29,15 @@ in
   boot.kernelParams = [ "intel_iommu=on" ];
 
   hardware.bluetooth.enable = true;
+
+  fileSystems."/mnt/hdd-1" = {
+    device = "/dev/disk/by-uuid/9894bac3-2c90-4e27-9595-81c2e87913c8";
+    fsType = "ext4";
+  };
+
+  #systemd.tmpfiles.rules = [
+  #  "d /mnt/hdd-1/backups/omega/personal 0764 ${user} wheel"
+  #];
 
   ## -----------------------------------------------------------------------
   ## BOOTLOADER
@@ -132,6 +145,7 @@ in
      scons
 
      skopeo
+     #rsnapshot # for server backups
   ];
 
   fonts.fonts = with pkgs; [
@@ -143,12 +157,16 @@ in
     jetbrains-mono
     font-awesome_5
     nerdfonts
+    mononoki
   ] ++ [
     lucide-icon-font
   ];
 
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ user ];
+
+  virtualisation.virtualbox.host.enableExtensionPack = true;
+  nixpkgs.config.allowUnfree = true;
 
   virtualisation.docker.enable = true;
   #virtualisation.docker.rootless = {
@@ -216,6 +234,8 @@ in
   #  vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
   #};
 
+
+
   hardware.opengl = {
     enable = true;
     extraPackages = with pkgs; [
@@ -228,6 +248,10 @@ in
 
   hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ vaapiIntel ];
 
+
+  boot.extraModulePackages = with config.boot.kernelPackages; [
+    v4l2loopback # for OBS Studio virtual camera
+  ];
 
 #  services.xserver.videoDrivers = [ "nvidia" ];
 

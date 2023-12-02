@@ -1,4 +1,4 @@
-{ system, self, nixpkgs, pkgs, inputs, user, ... }:
+{ system, self, nixpkgs, pkgs, pkgs-unstable, inputs, user, ... }:
 
 let
   # colors = import ../modules/themes/default/colors.nix;
@@ -57,7 +57,7 @@ in
           useGlobalPkgs = true;
           useUserPackages = true;
 
-          extraSpecialArgs = { inherit inputs user nix-colors; };
+          extraSpecialArgs = { inherit inputs user nix-colors pkgs-unstable; };
           users.${user} = import ./omega/home.nix;
 
         };

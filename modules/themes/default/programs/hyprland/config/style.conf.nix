@@ -2,7 +2,7 @@
 
 ''
   general {
-    col.active_border = rgba(${config.colorScheme.colors.base09}ff)
+    col.active_border = rgba(${config.colorScheme.colors.base02}ff)
     col.inactive_border = rgba(${config.colorScheme.colors.base00}ff)
   }
 
@@ -25,9 +25,9 @@
   }
 
   general {
-    gaps_in = 4
+    gaps_in = 8
     gaps_out = 16
-    border_size = 2
+    border_size = 4
     layout = dwindle
   }
 

@@ -1,9 +1,9 @@
 { home, config, ...}:
 
 # this is all not very idiomatic
-# but hey, it works :)
+# but hey, it works :) (kind of)
 let
-  col_sec_1 = "1";
+  col_sec_1 = "2";
   col_fg = "\$(tput setaf 0)";
   col_bg = "\$(tput setab ${col_sec_1})";
   col_fg_sym = "\$(tput setaf ${col_sec_1})";
