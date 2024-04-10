@@ -24,7 +24,6 @@ in
     neofetch
     kitty
     alacritty
-    firefox
     librewolf
 		gnome.nautilus	
     gnome.gnome-calendar
@@ -62,7 +61,7 @@ in
     gimp
     gnumake
     gnome.gnome-calculator
-    rustup
+    #rustup
     cambalache
     obs-studio
     drawio
@@ -83,7 +82,6 @@ in
     picard
     audacity
     signal-desktop
-    quartus-prime-lite
     pinyin-tool
     poetry
     vmware-horizon-client
@@ -93,7 +91,34 @@ in
     python310Packages.pygments
     swww
     zoom-us
+    octaveFull
+    freecad
+    openscad
+    bookworm
+    julia
+    desmume
+    melonDS
+    pitivi
+    #kdenlive # currently does not work :/
+    pandoc
+    just
+    pympress
+    meld
+    git-cola
+    pcsx2
+    cinny-desktop
+    fractal
+    sshfs
+    calibre
+    zotero
+    gnome.gnome-disk-utility
+    pdftk
 	];
+
+  qt = {
+    enable = true;
+    platformTheme = "gtk3";
+  };
 
 
   ## -----------------------------------------------------------------------
@@ -106,6 +131,8 @@ in
   programs.bash.enableCompletion = true;
   programs.fzf.enable = true;
   programs.fzf.enableBashIntegration = true;
+
+  programs.firefox.enable = true;
 
   home.shellAliases = {
     ssh = "kitty + kitten ssh";
@@ -138,6 +165,7 @@ in
           (import ../../modules/programs/sioyek)
           (import ../../modules/programs/alacritty)
           (import ../../modules/programs/mpd/home.nix)
+          (import ../../modules/programs/syncthing)
           #(import ../../modules/programs/spotify)
           inputs.hyprland.homeManagerModules.default
           (import ../../modules/themes/default)
@@ -203,6 +231,8 @@ in
     #  rime
     #];
   };
+
+
 
 
 

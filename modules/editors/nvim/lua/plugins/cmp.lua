@@ -110,6 +110,38 @@ cmp.setup({
 })
 
 
+cmp.setup.filetype("tex", {
+
+    snippet = {
+        -- REQUIRED - you must specify a snippet engine
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        end,
+    },
+
+    formatting = {
+      -- nvim-cmp overrides the standard completion-menu formatting. We use
+      -- a custom format function to preserve the format as provided by
+      -- VimTeX's omni completion function:
+      format = function(entry, vim_item)
+          vim_item.menu = ({
+            omni = (vim.inspect(vim_item.menu):gsub('%"', "")),
+            luasnip = "[Snippet]",
+            buffer = "[Buffer]",
+            -- formatting for other sources
+            })[entry.source.name]
+          return vim_item
+        end,
+    },
+    sources = {
+      { name = "omni", trigger_characters = { "{", "\\" } },
+      { name = 'luasnip' },
+      { name = 'buffer' },
+      -- other sources
+    },
+  })
+
+
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.

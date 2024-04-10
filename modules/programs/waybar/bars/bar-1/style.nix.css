@@ -4,7 +4,8 @@
     border: none;
     border-radius: 0px;
     /*font-family: VictorMono, Iosevka Nerd Font, Noto Sans CJK;*/
-    font-family: "JetBrains Mono", "Noto Sans CJK HK", "Font Awesome 5 Free"; /*"lucide";*/
+    /*font-family: "JetBrains Mono", "Noto Sans CJK HK", "Font Awesome 5 Free"; /*"lucide";*/
+    font-family: "JuliaMono", "Noto Sans CJK HK", "Font Awesome 5 Free"; /*"lucide";*/
     font-size: 14px;
     font-style: normal;
     min-height: 0;

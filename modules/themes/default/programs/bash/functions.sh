@@ -6,26 +6,17 @@ function _get_rand_col () {
 }
 
 function _git_branch () {
-  symbol=
+  symbol=
   git_branch="$(__git_ps1)";
   out=""
   if [ "$git_branch" = "" ];
   then
     out=""
   else
-    #out+="$(tput setaf 4)"
-    #out+=''
-    #out+="$(tput sgr0)"
-    #out+="$(tput setab 4)"
-    #out+="$(tput setaf 0)"
-    out+="$(tput bold)"
-    out+=" $symbol "
+    out+=" $symbol"
     out+=$git_branch
     out+=''
-    out+="$(tput sgr0)"
-    #out+="$(tput setaf 4)"
-    #out+=''
-    #out+="$(tput sgr0)"
   fi
   echo $out
 }
+

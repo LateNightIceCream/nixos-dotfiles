@@ -6,5 +6,7 @@
 
   bar-1 = import ./bars/bar-1/home.nix;
   bar-2 = import ./bars/bar-2/home.nix;
+  bar-3 = import ./bars/bar-3/home.nix;
+  bar-4 = import ./bars/bar-4/home.nix;
 
 }

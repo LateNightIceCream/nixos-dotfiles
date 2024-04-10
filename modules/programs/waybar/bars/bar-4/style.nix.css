@@ -12,33 +12,28 @@
 
 window#waybar {
     background: #${config.colorScheme.colors.base00};
-    /*background: transparent;*/
+    background: transparent;
     /*background: rgba(30, 30, 46, 0.5);*/
     color: #${config.colorScheme.colors.base05};
     /*padding-top: 8px;*/
     margin-top: 0px;
-    border-radius: 0px 0px 20px 20px;
+    border-radius: 0px 0px 0px 0px;
 }
 
 #workspaces {
 	background: #${config.colorScheme.colors.base00};
-	/*margin: 5px 5px 5px 5px;*/
-  /*border-radius: 0px 0px 24px 0px;*/
-  /*padding: 8px 5px 5px 8px;*/
-	/*border-radius: 16px;*/
-  /*border: solid 6px #${config.colorScheme.colors.base02};*/
-
   border-radius: 0px;
-  padding-left: 0px;
-  padding-right: 32px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-  margin-left: 32px;
-  margin-top: 0px;
+  border-radius: 0px 0px 20px 0px;
+  padding-left: 8px;
+  padding-right: 16px;
 }
 
 #workspaces button {
-    /*padding: 0px 5px;*/
+    padding: 8px;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+    margin-top: 2px;
     border-radius: 0px;
     color: #928374;
 }
@@ -46,7 +41,7 @@ window#waybar {
 #workspaces button.active {
     color: #${config.colorScheme.colors.base05};
     background-color: #${config.colorScheme.colors.base07};
-    border-radius: 0px;
+    border-radius: 16px;
     /*border: solid 2px #${config.colorScheme.colors.base02};*/
     /*border: 1px solid #${config.colorScheme.colors.base07};*/
 }
@@ -54,7 +49,7 @@ window#waybar {
 #workspaces button:hover {
   background-color: #${config.colorScheme.colors.base08};
   color: #${config.colorScheme.colors.base00};
-	border-radius: 0px;
+	border-radius: 16px;
 }
 
 /*#custom-date, #clock, #battery, #pulseaudio, #network, #custom-randwall, #custom-launcher {
@@ -82,14 +77,24 @@ window#waybar {
     color: #${config.colorScheme.colors.base05};
     background-color: #${config.colorScheme.colors.base00};
     /*border: 1px solid #${config.colorScheme.colors.base02};*/
-    border-radius: 0px 0px 20px 20px;
+    border-radius: 0px 0px 0px 20px;
     padding-left: 16px;
     padding-right: 16px;
-    margin-right: 16px;
-    margin-top: 0px;
+    margin-left: 16px;
     margin-bottom: 0px;
     font-weight: bold;
     /*border-left: solid 1px #282738;*/
+}
+
+#sit-stand-reminder {
+  color: #${config.colorScheme.colors.base05};
+  background-color: #${config.colorScheme.colors.base00};
+  border-radius: 0px 0px 0px 20px;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-left: 16px;
+  margin-bottom: 0px;
+  font-weight: bold;
 }
 
 #network {
@@ -99,11 +104,10 @@ window#waybar {
 }
 
 #pulseaudio {
-    /*background: #${config.colorScheme.colors.base00};*/
-    background: transparent;
+    background: #${config.colorScheme.colors.base00};
     color: #${config.colorScheme.colors.base05};
-    border-radius: 8px;
-    padding-right: 24px;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 #pulseaudio.muted {

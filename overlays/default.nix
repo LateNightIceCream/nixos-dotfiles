@@ -82,6 +82,8 @@ let
     \$button-max: ${importColors.colors.base0C};
     \$button-min: ${importColors.colors.base09};
 
+    \$links: ${importColors.colors.base0C};
+
     // Theme
     \$default-light: \$blue-light;
     \$default-dark: \$blue-dark;

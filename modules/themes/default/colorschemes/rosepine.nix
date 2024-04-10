@@ -19,6 +19,6 @@
     base0C = "#56949f";
     base0D = "#907aa9";
     base0E = "#ea9d34";
-    base0F = "#dfdad9";
+    base0F = "#cecacd";
   };
 }

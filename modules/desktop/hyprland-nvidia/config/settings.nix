@@ -7,8 +7,12 @@
 #             ▄▄ █      ██                                             
 #              ▀▀      ▀▀▀▀                                            
 
-{ config, ...}:
+{ config, ... }:
 
+let 
+  kitty-dropdown = import ./additional/kitty_dropdown.nix;
+  hyprratio = import ./additional/hyprratio.nix;
+in
 {
 
   "$mod" = "ALT";
@@ -22,7 +26,8 @@
   exec-once = [
     "hyprpaper"
     "waybar"
-  ];
+    "cinny"
+  ] ++ kitty-dropdown.exec-once;
 
   env = [
     "XCURSOR_SIZE,24"
@@ -35,30 +40,11 @@
   };
 
   general = {
-    gaps_in = 4;
-    gaps_out = 16;
-    border_size = 2;
-    layout = "dwindle";
-    "col.active_border" = "rgba(ebbcbaaa)";
-    "col.inactive_border" = "rgba(26233aaa)";
+    # defined in theme
   };
 
   decoration = {
-    rounding = 8;
-
-    blur = {
-      enabled = true;
-      size = 6;
-      passes = 3;
-      new_optimizations = true;
-      ignore_opacity = true;
-    };
-
-    drop_shadow = true;
-    shadow_range = 6;
-    shadow_render_power = 2;
-    shadow_offset = "0 5";
-    "col.shadow" = "rgba(00000099)";
+    # defined in theme
   };
 
   dwindle = {
@@ -72,14 +58,38 @@
   };
 
   windowrule = [
-    "float,^(kitty)$"
-  ];
+    "float,^(org.gnome.Calculator)$"
+    "float,^(com.github.weclaw1.ImageRoll)$"
+    "float,^(pavucontrol)$"
+    "float,^(cinny)$"
+  ] ++ kitty-dropdown.windowrule;
+
+  animations = {
+    enabled = true;
+
+    # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
+
+    #bezier = myBezier, 0.05, 0.9, 0.1, 1.05";
+    #bezier = easeInOutExpo, 0.87, 0, 0.13, 1
+    bezier = [
+      "myBezier, 0.05, 0.9, 0.1, 1.05"
+      "easeInOutExpo, 0.87, 0, 0.13, 1"
+    ];
+
+    animation = [
+      "windows, 1, 5, myBezier"
+      "windowsOut, 1, 5, default, popin 80%"
+      "border, 1, 10, default"
+      "borderangle, 1, 8, default"
+      "fade, 1, 7, default"
+      "workspaces, 1, 4, easeInOutExpo"
+    ];
+  };
 
   bind = [
     # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
     "$mod, return, exec, kitty"
     "$mod SHIFT, Q, killactive,"
-    "$mod, E, exec, dolphin"
     "$mod, V, togglefloating,"
     "$mod, D, exec, rofi -show drun -theme launcher_theme"
     "$mod, P, pseudo," # dwindle
@@ -114,11 +124,13 @@
     "$mod SHIFT, 8, movetoworkspace, 8"
     "$mod SHIFT, 9, movetoworkspace, 9"
     "$mod SHIFT, 0, movetoworkspace, 10"
-
+    
     # Scroll through existing workspaces with mainMod + scroll
     "$mod, mouse_down, workspace, e+1"
     "$mod, mouse_up, workspace, e-1"
-  ];
+  ] 
+  ++ kitty-dropdown.bind
+  ++ hyprratio.bind;
 
   bindm = [
     # mouse movements

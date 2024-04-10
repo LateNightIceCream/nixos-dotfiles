@@ -48,6 +48,7 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
   #boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
+  boot.tmp.cleanOnBoot = true;
 
   ## -----------------------------------------------------------------------
   ## NETWORKING
@@ -107,6 +108,8 @@ in
     # packages = with pkgs; [];
   };
 
+  
+
 
   ## -----------------------------------------------------------------------
   ## PACKAGES
@@ -116,7 +119,6 @@ in
 
      vim
      wget
-     git
      xdg-utils
      glib
      gtk3
@@ -145,15 +147,27 @@ in
      scons
 
      skopeo
+     lshw
+     cachix
+
+     #cudaPackages.cudatoolkit
+     #cudaPackages.cudnn
+     #cudaPackages.cutensor
+
+    (blender.override {
+      cudaSupport = true;
+    })
+
      #rsnapshot # for server backups
   ];
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
     source-han-sans
     liberation_ttf
+    julia-mono
     jetbrains-mono
     font-awesome_5
     nerdfonts
@@ -164,11 +178,19 @@ in
 
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ user ];
-
   virtualisation.virtualbox.host.enableExtensionPack = true;
-  nixpkgs.config.allowUnfree = true;
+  virtualisation.vmware.guest.enable = true;
 
-  virtualisation.docker.enable = true;
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+  ];
+
+  virtualisation.docker = {
+    enable = true;
+    enableNvidia = true;
+  };
+
   #virtualisation.docker.rootless = {
   #  enable = true;
   #  setSocketVariable = true;
@@ -234,15 +256,24 @@ in
   #  vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
   #};
 
+  programs.git = {
+    enable = true;
+  };
 
+  programs.git.prompt.enable = true;
 
   hardware.opengl = {
     enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
     extraPackages = with pkgs; [
       intel-media-driver # LIBVA_DRIVER_NAME=iHD
       vaapiIntel         # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
       vaapiVdpau
       libvdpau-va-gl
+      #cudaPackages.cudatoolkit
+      #cudaPackages.libnvidia_nscq
+      #cudaPackages.cudnn
     ];
   };
 
@@ -253,19 +284,27 @@ in
     v4l2loopback # for OBS Studio virtual camera
   ];
 
-#  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "nvidia" ]; # nope
 
-#  hardware.nvidia = {
-#    modesetting.enable = true;
-#    open = false;
-#    #nvidiaSettings = true;
-#  };
+  # testing, maybe need to remove later
+  hardware.nvidia = {
+    modesetting.enable = true;
+    open = false;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+    nvidiaSettings = true;
+    # Optionally, you may need to select the appropriate driver version for your specific GPU.
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
 
-  #xdg.portal = {
-  #  enable = true;
-  #  wlr.enable = true;
-  #  extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
-  #};
+  xdg.portal = {
+    enable = true;
+    #wlr.enable = true;
+    extraPortals = [ 
+      #pkgs.xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-gtk
+      ];
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -287,6 +326,7 @@ in
     settings = {
       auto-optimise-store = true;
       experimental-features = [ "nix-command" "flakes" ];  
+      trusted-users = [ "root" user ];
     };
 
     gc = {

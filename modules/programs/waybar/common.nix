@@ -11,5 +11,4 @@
     target = "graphical-session.target";
   };
 
-
 }

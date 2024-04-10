@@ -1,32 +1,47 @@
-{ home, config, ...}:
+{ home, config, inputs, ...}:
 
-# this is all not very idiomatic
-# but hey, it works :) (kind of)
 let
-  col_sec_1 = "2";
-  col_fg = "\$(tput setaf 0)";
-  col_bg = "\$(tput setab ${col_sec_1})";
-  col_fg_sym = "\$(tput setaf ${col_sec_1})";
-  bold = "\\e[1m";
-  dir = "\\w";
-  reset = "\$(tput sgr0)";
-  #git_branch = "\$(__git_ps1)";
-  newline = "\n";
-  prompt_symbol = "";
+
+  hex2rgb = hexstr: inputs.nix-colors.lib.conversions.hexToRGBString ";" hexstr;
+
+  hex2escape = hexstr: typecode: "\\033[${typecode};2;${hex2rgb hexstr}m";
+
+  hex2fg = hexstr: hex2escape hexstr "38";
+  hex2bg = hexstr: hex2escape hexstr "48";
+
+  term_bg = config.colorScheme.colors.base00;
+  bg00 = config.colorScheme.colors.base04;
+  fg00 = config.colorScheme.colors.base00;
+  bg10 = config.colorScheme.colors.base04;
+  fg10 = config.colorScheme.colors.base00;
+
+  reset = "\\[\\e[0m\\]";
+
+  bgsh00 = hex2bg bg00;
+  fgsh00 = hex2fg fg00;
+  bgsh10 = hex2bg bg10;
+  fgsh10 = hex2fg fg10;
+
+  col_text = col_bg: col_fg: text: "${hex2fg col_fg}${hex2bg col_bg}${text}${reset}";
+
+  sep00 = col_text term_bg bg00 "";
+  sep01 = col_text bg10 bg00 "";
+
+  sep10 = col_text term_bg bg10 "";
+
+  #prompt_symbol = ""; # perhaps lucide icon
+  prompt_symbol = ""; # perhaps lucide icon
+
 in
 {
   programs.bash = { 
-    # ps1 requires lucide icons
-    # have to source git-prompt.sh manually for some reason
-    # https://github.com/NixOS/nixpkgs/issues/199046 
-    bashrcExtra = builtins.readFile ./functions.sh + ''
-    source /run/current-system/sw/share/bash-completion/completions/git-prompt.sh
 
-    #COL_1="$(get_rand_col)"
+    bashrcExtra = builtins.readFile ./functions.sh + ''
+
     PROMPT_DIRTRIM=2
+
+    PS1='${sep00}${bgsh00}${fgsh00} \[\e[1m\]\u@\h \A ${sep01}${bgsh10}${fgsh10} \[\e[1m\]\w $(_git_branch) ${reset}${sep10}\n${prompt_symbol}  '
     
-    PS1='${col_fg_sym}${reset}${col_bg}${col_fg}${bold} \u@\H \A ${reset}${col_fg_sym}${reset} ${dir} ${reset}$(_git_branch)${newline}${bold}${prompt_symbol} '
-    trap 'echo -ne "${reset}"' DEBUG
-    '' + builtins.readFile ./bashrcExtra.sh;
+    '';
   };
 }

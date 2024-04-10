@@ -34,13 +34,17 @@
         cmp-path
         cmp-cmdline
         cmp_luasnip
+        cmp-omni
         #cmp-treesitter;
         nvim-treesitter
-        (nvim-treesitter.withPlugins (p: [ p.c p.cpp p.rust p.python p.nix p.css ]))
+        (nvim-treesitter.withPlugins (p: [ p.c p.cpp p.python p.nix p.css ]))
         vim-ccls
         fzf-vim
         indentLine
         nvim-autopairs
+        rustaceanvim
+        julia-vim
+        vimtex
       ];
 
       extraLuaConfig = ''
@@ -56,7 +60,7 @@
     packages = with pkgs; [
       rnix-lsp
       pyright
-      #rust-analyzer
+      rust-analyzer
       #rustfmt
       clang-tools
       tree-sitter

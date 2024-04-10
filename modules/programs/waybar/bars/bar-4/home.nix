@@ -19,6 +19,9 @@
 
           modules-left = [
             # will only work with waybar>9.22 -> lets wait for nixpkgs stable
+            "clock"
+            "pulseaudio"
+            "custom/sit-stand-reminder"
             "hyprland/workspaces" 
           ];
 
@@ -27,9 +30,9 @@
 
           modules-right = [
             #"cpu"
-            "pulseaudio"
-            "custom/sit-stand-reminder"
-            "clock"
+            #"pulseaudio"
+            #"custom/sit-stand-reminder"
+            #"clock"
           ];
 
           "hyprland/workspaces" = import ../../modules/workspace.nix;

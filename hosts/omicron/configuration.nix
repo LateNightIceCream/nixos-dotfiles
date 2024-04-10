@@ -123,11 +123,11 @@
     noto-fonts-emoji
     source-han-sans
     liberation_ttf
+    julia-mono
     jetbrains-mono
     (import ../../pkgs/lucide-icon-font {inherit stdenv fetchzip;})
     #lucide-icon-font
     font-awesome_5
-
   ];
 
   virtualisation.virtualbox.host.enable = true;

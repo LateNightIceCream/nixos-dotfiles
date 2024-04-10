@@ -4,57 +4,49 @@
     border: none;
     border-radius: 0px;
     /*font-family: VictorMono, Iosevka Nerd Font, Noto Sans CJK;*/
-    font-family: "JetBrains Mono", "Noto Sans CJK HK", "Font Awesome 5 Free"; /*"lucide";*/
+    font-family: "JuliaMono", "Noto Sans CJK HK", "Font Awesome 5 Free"; /*"lucide";*/
     font-size: 11px;
     font-style: normal;
-    min-height: 32px;
+    min-height: 0px;
 }
 
 window#waybar {
     background: #${config.colorScheme.colors.base00};
-    /*background: transparent;*/
+    background: transparent;
     /*background: rgba(30, 30, 46, 0.5);*/
     color: #${config.colorScheme.colors.base05};
     /*padding-top: 8px;*/
     margin-top: 0px;
-    border-radius: 0px 0px 20px 20px;
+    border-radius: 0px 0px 0px 0px;
 }
 
 #workspaces {
 	background: #${config.colorScheme.colors.base00};
-	/*margin: 5px 5px 5px 5px;*/
-  /*border-radius: 0px 0px 24px 0px;*/
-  /*padding: 8px 5px 5px 8px;*/
-	/*border-radius: 16px;*/
-  /*border: solid 6px #${config.colorScheme.colors.base02};*/
+  border-radius: 0px;
+  margin-left: 16px;
+  margin-top: 0px;
 
-  border: solid 2px #${config.colorScheme.colors.base02};
-  border-radius: 20px;
+  border-radius: 0px 0px 20px 20px;
   padding-left: 16px;
   padding-right: 16px;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  margin-left: 16px;
-  margin-top: 8px;
-
-  min-height: 35px; /* important or you get the bounce */
-
 }
 
 #workspaces button {
-    /*padding: 0px 5px;*/
-    border-radius: 20px;
+    padding: 8px;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+    margin-top: 2px;
+    border-radius: 0px;
     color: #928374;
-    min-width: 16px;
 }
 
 #workspaces button.active {
-    /*background-color: #${config.colorScheme.colors.base07};*/
     color: #${config.colorScheme.colors.base05};
+    background-color: #${config.colorScheme.colors.base07};
     border-radius: 16px;
-    border: solid 2px #${config.colorScheme.colors.base02};
+    /*border: solid 2px #${config.colorScheme.colors.base02};*/
     /*border: 1px solid #${config.colorScheme.colors.base07};*/
-    min-width: 24px;
 }
 
 #workspaces button:hover {
@@ -78,7 +70,7 @@ window#waybar {
 
 #tray {
     background: #282828;
-    margin: 5px 5px 5px 5px;
+    /*margin: 5px 5px 5px 5px;*/
     border-radius: 16px;
     padding: 0px 5px;
     /*border-right: solid 1px #282738;*/
@@ -91,6 +83,7 @@ window#waybar {
     border-radius: 0px 0px 20px 20px;
     padding-left: 16px;
     padding-right: 16px;
+    margin-left: 16px;
     margin-right: 16px;
     margin-top: 0px;
     margin-bottom: 0px;
@@ -139,7 +132,7 @@ window#waybar {
     margin: 5px;
     margin-left: 5px;
     margin-right: 5px;
-    padding: 0px 10px 0px 10px;
+    padding: 0px 0px 0px 0px;
     font-weight: bold;
 }
 

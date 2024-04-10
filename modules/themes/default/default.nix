@@ -9,5 +9,8 @@
     ./programs/gtk
     ./programs/bash
     ./programs/hyprland
+    ./programs/mako
+    ./programs/firefox
+    ./programs/sioyek
   ];
 }

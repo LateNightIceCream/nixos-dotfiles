@@ -3,15 +3,17 @@
 {
   programs.kitty = {
 
-    font.name = "JetBrains Mono Regular";
+    #font.name = "JetBrains Mono Regular";
+    font.name = "JuliaMono Regular";
     font.size = 10;
 
     settings = {
 
-      bold_font = "JetBrains Mono Bold";
+      #bold_font = "JetBrains Mono Bold";
+      bold_font = "JuliaMono Bold";
 
       # symbol_map codepoints Font Family Name
-      symbol_map  = "U+F264,U+F2FA,U+F510,U+F20B,U+F28E,U+F42F,U+F230 lucide";
+      symbol_map  = "U+F264,U+F2FA,U+F510,U+F20B,U+F28E,U+F42F,U+F230,U+F1FD,U+F1EF lucide";
 
       window_padding_width = "8 24";
       # colors
