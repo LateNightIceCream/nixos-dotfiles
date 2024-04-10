@@ -165,7 +165,7 @@ in
           (import ../../modules/programs/sioyek)
           (import ../../modules/programs/alacritty)
           (import ../../modules/programs/mpd/home.nix)
-          (import ../../modules/programs/syncthing)
+          (import ../../modules/services/syncthing)
           #(import ../../modules/programs/spotify)
           inputs.hyprland.homeManagerModules.default
           (import ../../modules/themes/default)

@@ -2,4 +2,3 @@ result/
 result
 nixpkgs/
 !.gitkeep
-*credentials*
