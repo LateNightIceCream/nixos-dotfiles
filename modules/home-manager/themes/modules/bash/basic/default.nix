@@ -1,4 +1,4 @@
-{ lib, config, pkgs, inputs, ...}:
+{ lib, config, pkgs, inputs, ... }:
 
 let
   cfg = config.programs.bash.myopts.theme.basic;
@@ -25,15 +25,15 @@ let
   bgsh10 = hex2bg bg10;
   fgsh10 = hex2fg fg10;
 
-  col_text = col_bg: col_fg: text: "${hex2fg col_fg}${hex2bg col_bg}${text}${reset}";
+  col_text = col_bg: col_fg: text:
+    "${hex2fg col_fg}${hex2bg col_bg}${text}${reset}";
 
   sep00 = col_text term_bg bg00 "";
   sep01 = col_text bg10 bg00 "";
 
   sep10 = col_text term_bg bg10 "";
 
-in
-{
+in {
 
   options.programs.bash.myopts.theme.basic = {
     enable = lib.mkEnableOption "enable bash basic theme";
@@ -46,14 +46,14 @@ in
     };
   };
 
-  config.programs.bash = lib.mkIf enable { 
+  config.programs.bash = lib.mkIf enable {
 
     bashrcExtra = builtins.readFile ./functions.sh + ''
 
-    PROMPT_DIRTRIM=2
+      PROMPT_DIRTRIM=2
 
-    #PS1='${sep00}${bgsh00}${fgsh00} \[\e[1m\]\u@\h \A ${sep01}${bgsh10}${fgsh10} \[\e[1m\]\w $(_git_branch) ${reset}${sep10}\n${promptSymbol}  '
-    PS1='${sep00}${bgsh00}${fgsh00} \[\e[1m\]\A ${sep01}${bgsh10}${fgsh10} \[\e[1m\]\w $(_git_branch) ${reset}${sep10}\n${promptSymbol}  '
+      #PS1='${sep00}${bgsh00}${fgsh00} \[\e[1m\]\u@\h \A ${sep01}${bgsh10}${fgsh10} \[\e[1m\]\w $(_git_branch) ${reset}${sep10}\n${promptSymbol}  '
+      PS1='${sep00}${bgsh00}${fgsh00} \[\e[1m\]\A ${sep01}${bgsh10}${fgsh10} \[\e[1m\]\w $(_git_branch) ${reset}${sep10}\n${promptSymbol}  '
     '';
   };
 }

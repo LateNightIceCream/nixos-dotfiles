@@ -1,3 +1,1 @@
-{
-  frappe = import ./frappe.nix;
-}
+{ frappe = import ./frappe.nix; }

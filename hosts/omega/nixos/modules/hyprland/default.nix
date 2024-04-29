@@ -1,4 +1,4 @@
-{config, lib, pkgs, inputs, ...}:
+{ config, lib, pkgs, inputs, ... }:
 
 {
 
@@ -9,9 +9,9 @@
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    extraPortals = [ 
+    extraPortals = [
       pkgs.xdg-desktop-portal-hyprland
-      pkgs.xdg-desktop-portal-gtk 
+      pkgs.xdg-desktop-portal-gtk
       #pkgs.xdg-desktop-portal-wlr 
       #pkgs.xdg-desktop-portal-gnome 
     ];

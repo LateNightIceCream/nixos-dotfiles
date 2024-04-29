@@ -1,3 +1,1 @@
-[
-  ./sideberry
-]
+[ ./sideberry ]

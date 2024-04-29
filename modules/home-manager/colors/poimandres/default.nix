@@ -1,3 +1,1 @@
-{
-  poimandres = import ./poimandres.nix;
-}
+{ poimandres = import ./poimandres.nix; }

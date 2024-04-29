@@ -1,10 +1,9 @@
-{ lib, config, pkgs, home, ...}:
+{ lib, config, pkgs, home, ... }:
 
 let
   cfg = config.wayland.windowManager.hyprland.myopts.theme.basic;
   enable = cfg.enable && config.wayland.windowManager.hyprland.enable;
-in
-{
+in {
 
   options.wayland.windowManager.hyprland.myopts.theme.basic = {
     enable = lib.mkEnableOption "enable hyprland basic theme";

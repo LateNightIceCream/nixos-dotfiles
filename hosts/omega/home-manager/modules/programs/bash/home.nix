@@ -12,9 +12,6 @@
     mv = "mv -i";
   };
 
-  home.packages = with pkgs; [
-    safe-rm
-  ];
+  home.packages = with pkgs; [ safe-rm ];
 }
-
 

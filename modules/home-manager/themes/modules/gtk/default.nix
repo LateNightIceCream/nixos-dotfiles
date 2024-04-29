@@ -1,3 +1,1 @@
-[
-  ./colloid
-]
+[ ./colloid ]

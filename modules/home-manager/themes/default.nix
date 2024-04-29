@@ -1,7 +1,5 @@
 { lib, config, pkgs, ... }:
 
 {
-  imports = [
-    ./themes/basic.nix
-  ];
+  imports = [ ./themes/basic.nix ];
 }

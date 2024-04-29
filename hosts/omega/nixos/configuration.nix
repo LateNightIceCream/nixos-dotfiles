@@ -10,10 +10,7 @@
 
     config = {
       allowUnfree = true;
-      permittedInsecurePackages = [
-        "electron-25.9.0"
-        "nix-2.15.3"
-      ];
+      permittedInsecurePackages = [ "electron-25.9.0" "nix-2.15.3" ];
     };
 
     overlays = [
@@ -23,21 +20,18 @@
     ];
   };
 
-
   ## -----------------------------------------------------------------------
   ## HARDWARE
   ## -----------------------------------------------------------------------
 
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./modules/services/syncthing
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./modules/services/syncthing
+  ];
 
   boot.kernelParams = [ "intel_iommu=on" ];
 
   hardware.bluetooth.enable = true;
-
 
   fileSystems."/mnt/hdd-1" = {
     device = "/dev/disk/by-uuid/9894bac3-2c90-4e27-9595-81c2e87913c8";
@@ -47,7 +41,6 @@
   #systemd.tmpfiles.rules = [
   #  "d /mnt/hdd-1/backups/omega/personal 0764 ${user} wheel"
   #];
-
 
   ## -----------------------------------------------------------------------
   ## BOOTLOADER
@@ -60,17 +53,15 @@
 
   boot.tmp.cleanOnBoot = true;
 
-
   ## -----------------------------------------------------------------------
   ## NETWORKING
   ## -----------------------------------------------------------------------
-  
+
   # Define your hostname.
-  networking.hostName = "omega"; 
+  networking.hostName = "omega";
 
   # Enable networking
   networking.networkmanager.enable = true;
-
 
   ## -----------------------------------------------------------------------
   ## LOCALE
@@ -103,7 +94,6 @@
   # Configure console keymap
   console.keyMap = "de";
 
-
   ## -----------------------------------------------------------------------
   ## USERS
   ## -----------------------------------------------------------------------
@@ -112,9 +102,9 @@
   users.users.${user} = {
     isNormalUser = true;
     description = "${user}";
-    extraGroups = [ "networkmanager" "wheel" "audio" "video" "dialout" "docker" ];
+    extraGroups =
+      [ "networkmanager" "wheel" "audio" "video" "dialout" "docker" ];
   };
-
 
   ## -----------------------------------------------------------------------
   ## PACKAGES
@@ -122,64 +112,59 @@
 
   environment.systemPackages = with pkgs; [
 
-     vim
-     wget
-     xdg-utils
-     glib
-     gtk3
-     gtk4
-     libnotify
-     wl-clipboard
-     wlr-randr
-     wayland
-     wayland-scanner
-     wayland-utils
-     egl-wayland
-     wayland-protocols
-     xwayland
-     glfw-wayland
-     networkmanagerapplet
-     lxappearance
-     pavucontrol
-     killall
-     ncurses5
-     flex
-     bison
-     scons
-     skopeo
-     lshw
-     cachix
+    vim
+    wget
+    xdg-utils
+    glib
+    gtk3
+    gtk4
+    libnotify
+    wl-clipboard
+    wlr-randr
+    wayland
+    wayland-scanner
+    wayland-utils
+    egl-wayland
+    wayland-protocols
+    xwayland
+    glfw-wayland
+    networkmanagerapplet
+    lxappearance
+    pavucontrol
+    killall
+    ncurses5
+    flex
+    bison
+    scons
+    skopeo
+    lshw
+    cachix
 
-    (blender.override {
-      cudaSupport = true;
-    })
+    (blender.override { cudaSupport = true; })
 
   ];
 
-  fonts.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    source-han-sans
-    liberation_ttf
-    julia-mono
-    jetbrains-mono
-    font-awesome_5
-    nerdfonts
-    mononoki
-  ] ++ [
-    lucide-icon-font
-  ];
+  fonts.packages = with pkgs;
+    [
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      source-han-sans
+      liberation_ttf
+      julia-mono
+      jetbrains-mono
+      font-awesome_5
+      nerdfonts
+      mononoki
+    ] ++ [ lucide-icon-font ];
 
   programs.dconf.enable = true;
   programs.light.enable = true;
-
 
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ user ];
   virtualisation.virtualbox.host.enableExtensionPack = true;
   virtualisation.vmware.guest.enable = true;
-
 
   virtualisation.docker = {
     enable = true;
@@ -225,8 +210,16 @@
   services.actkbd = {
     enable = true;
     bindings = [
-      { keys = [ 233 ]; events = [ "key" ]; command = "/run/wrappers/bin/light -A 10"; }
-      { keys = [ 232 ]; events = [ "key" ]; command = "/run/wrappers/bin/light -U 10"; }
+      {
+        keys = [ 233 ];
+        events = [ "key" ];
+        command = "/run/wrappers/bin/light -A 10";
+      }
+      {
+        keys = [ 232 ];
+        events = [ "key" ];
+        command = "/run/wrappers/bin/light -U 10";
+      }
     ];
   };
 
@@ -234,9 +227,7 @@
 
   services.gnome.gnome-keyring.enable = true;
 
-  services.udev.packages = [ 
-  ];
-
+  services.udev.packages = [ ];
 
   ## -----------------------------------------------------------------------
   ## OTHER OPTIONS
@@ -246,9 +237,7 @@
   #  vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
   #};
 
-  programs.git = {
-    enable = true;
-  };
+  programs.git = { enable = true; };
 
   programs.git.prompt.enable = true;
 
@@ -258,7 +247,7 @@
     driSupport32Bit = true;
     extraPackages = with pkgs; [
       intel-media-driver # LIBVA_DRIVER_NAME=iHD
-      vaapiIntel         # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+      vaapiIntel # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
       vaapiVdpau
       libvdpau-va-gl
     ];
@@ -266,10 +255,10 @@
 
   hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ vaapiIntel ];
 
-
-  boot.extraModulePackages = with config.boot.kernelPackages; [
-    v4l2loopback # for OBS Studio virtual camera
-  ];
+  boot.extraModulePackages = with config.boot.kernelPackages;
+    [
+      v4l2loopback # for OBS Studio virtual camera
+    ];
 
   services.xserver.videoDrivers = [ "nvidia" ]; # nope
 
@@ -286,9 +275,9 @@
 
   #xdg.portal = {
   #  enable = true;
-    #wlr.enable = true;
+  #wlr.enable = true;
   #  extraPortals = [ 
-      #pkgs.xdg-desktop-portal-wlr
+  #pkgs.xdg-desktop-portal-wlr
   #    pkgs.xdg-desktop-portal-gtk
   #    ];
   #};
@@ -324,18 +313,17 @@
     "56526e"
   ];
 
-
   ## -----------------------------------------------------------------------
   ## nix
   ## -----------------------------------------------------------------------
 
   nix = {
-    
+
     package = pkgs.nixFlakes;
 
     settings = {
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];  
+      experimental-features = [ "nix-command" "flakes" ];
       trusted-users = [ "root" user ];
     };
 

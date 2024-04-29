@@ -1,3 +1,1 @@
-{
-  reduced = import ./reduced.nix;
-}
+{ reduced = import ./reduced.nix; }

@@ -1,4 +1,3 @@
-#
 # ▀██▀  ▀██▀                            ▀██                       ▀██  
 #  ██    ██   ▄▄▄▄ ▄▄▄ ▄▄▄ ▄▄▄  ▄▄▄ ▄▄   ██   ▄▄▄▄   ▄▄ ▄▄▄     ▄▄ ██  
 #  ██▀▀▀▀██    ▀█▄  █   ██▀  ██  ██▀ ▀▀  ██  ▀▀ ▄██   ██  ██  ▄▀  ▀██  
@@ -9,29 +8,22 @@
 
 { config, ... }:
 
-let 
+let
   kitty-dropdown = import ./additional/kitty_dropdown.nix;
   hyprratio = import ./additional/hyprratio.nix;
-in
-{
+in {
 
   "$mod" = "ALT";
 
-  monitor = [ 
+  monitor = [
     "HDMI-A-1,preferred,auto,1"
     "VGA-1,preferred,auto,1,transform,1"
     ",preferred,auto,1"
   ];
 
-  exec-once = [
-    "hyprpaper"
-    "waybar"
-    "cinny"
-  ] ++ kitty-dropdown.exec-once;
+  exec-once = [ "hyprpaper" "waybar" "cinny" ] ++ kitty-dropdown.exec-once;
 
-  env = [
-    "XCURSOR_SIZE,24"
-  ];
+  env = [ "XCURSOR_SIZE,24" ];
 
   input = {
     kb_layout = "de";
@@ -48,14 +40,13 @@ in
   };
 
   dwindle = {
-      # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
-      pseudotile = true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
-      preserve_split = true; # you probably want this
+    # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
+    pseudotile =
+      true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+    preserve_split = true; # you probably want this
   };
 
-  master = {
-    new_is_master = true;
-  };
+  master = { new_is_master = true; };
 
   windowrule = [
     "float,^(org.gnome.Calculator)$"
@@ -76,10 +67,8 @@ in
 
     #bezier = myBezier, 0.05, 0.9, 0.1, 1.05";
     #bezier = easeInOutExpo, 0.87, 0, 0.13, 1
-    bezier = [
-      "myBezier, 0.05, 0.9, 0.1, 1.05"
-      "easeInOutExpo, 0.87, 0, 0.13, 1"
-    ];
+    bezier =
+      [ "myBezier, 0.05, 0.9, 0.1, 1.05" "easeInOutExpo, 0.87, 0, 0.13, 1" ];
 
     animation = [
       "windows, 1, 5, myBezier"
@@ -129,13 +118,11 @@ in
     "$mod SHIFT, 8, movetoworkspace, 8"
     "$mod SHIFT, 9, movetoworkspace, 9"
     "$mod SHIFT, 0, movetoworkspace, 10"
-    
+
     # Scroll through existing workspaces with mainMod + scroll
     "$mod, mouse_down, workspace, e+1"
     "$mod, mouse_up, workspace, e-1"
-  ] 
-  ++ kitty-dropdown.bind
-  ++ hyprratio.bind;
+  ] ++ kitty-dropdown.bind ++ hyprratio.bind;
 
   bindm = [
     # mouse movements

@@ -11,10 +11,11 @@
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
       };
     };
-    default1 = { # just a dummy profile because sometimes the above does not build
-      id = 1;
-      isDefault = false;
-    };
+    default1 =
+      { # just a dummy profile because sometimes the above does not build
+        id = 1;
+        isDefault = false;
+      };
   };
 
   programs.firefox.package = pkgs.firefox.override {

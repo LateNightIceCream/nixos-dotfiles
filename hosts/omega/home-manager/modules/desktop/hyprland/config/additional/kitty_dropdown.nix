@@ -1,10 +1,6 @@
-let
-  kitty-class = "kitty-dropdown";
-in 
-{
-  exec-once= [
-    "kitty --class=${kitty-class}"
-  ];
+let kitty-class = "kitty-dropdown";
+in {
+  exec-once = [ "kitty --class=${kitty-class}" ];
 
   windowrule = [
     "float,${kitty-class}"
@@ -16,8 +12,6 @@ in
     "move 593 -300,${kitty-class}"
   ];
 
-  bind = [
-    "$mod, E, exec, $HOME/.config/hypr/scripts/dropdown.sh"
-  ];
+  bind = [ "$mod, E, exec, $HOME/.config/hypr/scripts/dropdown.sh" ];
 
 }

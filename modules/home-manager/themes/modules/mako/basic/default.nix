@@ -1,10 +1,9 @@
-{ lib, config, pkgs, home, ...}:
+{ lib, config, pkgs, home, ... }:
 
 let
   cfg = config.services.mako.myopts.theme.basic;
   enable = cfg.enable && config.services.mako.enable;
-in
-{
+in {
 
   options.services.mako.myopts.theme.basic = {
     enable = lib.mkEnableOption "enable mako basic theme";

@@ -3,8 +3,7 @@
 let
   cfg = config.services.dunst.myopts.theme.basic;
   enable = config.services.dunst.enable && cfg.enable;
-in
-{
+in {
 
   options.services.dunst.myopts.theme.basic = {
     enable = lib.mkEnableOption "enable dunst basic theme";
@@ -68,24 +67,22 @@ in
       # Show how many messages are currently hidden (because of geometry)
       indicate_hidden = true;
 
-       # Don't remove messages, if the user is idle (no mouse or keyboard input)
-       # for longer than idle_threshold seconds.
-       # Set to 0 to disable.
+      # Don't remove messages, if the user is idle (no mouse or keyboard input)
+      # for longer than idle_threshold seconds.
+      # Set to 0 to disable.
       idle_threshold = 120;
 
       icon_corner_radius = 8;
 
     };
 
-
     urgency_low = {
-        background = "#${config.colorScheme.palette.base05}";
-        foreground = "#${config.colorScheme.palette.base00}";
-        frame_color = "#${config.colorScheme.palette.base04}";
-        default_icon = "${./icons/info-light.svg}";
-        timeout = 10;
+      background = "#${config.colorScheme.palette.base05}";
+      foreground = "#${config.colorScheme.palette.base00}";
+      frame_color = "#${config.colorScheme.palette.base04}";
+      default_icon = "${./icons/info-light.svg}";
+      timeout = 10;
     };
-
 
     urgency_normal = {
       background = "#${config.colorScheme.palette.base00}";
@@ -96,7 +93,6 @@ in
       #icon_position=
     };
 
-
     urgency_critical = {
       background = "#${config.colorScheme.palette.base08}";
       foreground = "#${config.colorScheme.palette.base00}";
@@ -105,13 +101,13 @@ in
       timeout = 0;
     };
 
-#    backgroundColor = "#${config.colorScheme.palette.base00}";
-#    textColor = "#${config.colorScheme.palette.base05}";
-#    borderSize = 2;
-#    borderColor = "#${config.colorScheme.palette.base02}";
+    #    backgroundColor = "#${config.colorScheme.palette.base00}";
+    #    textColor = "#${config.colorScheme.palette.base05}";
+    #    borderSize = 2;
+    #    borderColor = "#${config.colorScheme.palette.base02}";
 
-#    width = 280;
-#    height = 173;
+    #    width = 280;
+    #    height = 173;
 
   };
 }

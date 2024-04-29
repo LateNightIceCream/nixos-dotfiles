@@ -1,16 +1,14 @@
-{config, home, inputs, lib, ...}:
+{ config, home, inputs, lib, ... }:
 
 let
 
   cfg = config.programs.sioyek.myopts.theme.basic;
   enable = cfg.enable && config.programs.sioyek.enable;
-  
+
   # returns list of rgb colors with range 0.0 .. 1.0
   hexToRGBNormalized = hexstr:
-    let
-      rgbList = inputs.nix-colors.lib.conversions.hexToRGB hexstr;
-    in 
-    builtins.map(c: c / 255.0) rgbList;
+    let rgbList = inputs.nix-colors.lib.conversions.hexToRGB hexstr;
+    in builtins.map (c: c / 255.0) rgbList;
 
   hexToRGBStringNormalized = sep: hex:
     let
@@ -18,14 +16,11 @@ let
       inherit (lib) concatStringsSep;
       hexInRGB = hexToRGBNormalized hex;
       hexInRGBString = map toString hexInRGB;
-    in
-    concatStringsSep sep hexInRGBString;
+    in concatStringsSep sep hexInRGBString;
 
   sioyekCol = hexstr: hexToRGBStringNormalized " " hexstr;
 
-in 
-
-{
+in {
 
   options.programs.sioyek.myopts.theme.basic = {
     enable = lib.mkEnableOption "enable sioyek basic theme";

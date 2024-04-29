@@ -3,8 +3,7 @@
 let
   cfg = config.programs.waybar.myopts.theme.minihor;
   enable = cfg.enable && config.programs.waybar.enable;
-in
-{
+in {
 
   options.programs.waybar.myopts.theme.minihor = {
     enable = lib.mkEnableOption "enable waybar minihor theme";
@@ -15,10 +14,10 @@ in
     };
   };
 
-
   config = lib.mkIf enable {
 
-    home.file.".config/waybar/scripts/sit-stand-reminder.py".source = ./modules/scripts/sit-stand-reminder.py;
+    home.file.".config/waybar/scripts/sit-stand-reminder.py".source =
+      ./modules/scripts/sit-stand-reminder.py;
 
     programs.waybar = {
 
@@ -40,14 +39,12 @@ in
           modules-left = [
             # will only work with waybar>9.22 -> lets wait for nixpkgs stable
             "clock"
-            "hyprland/workspaces" 
+            "hyprland/workspaces"
           ];
 
-          modules-center = [
-          ];
+          modules-center = [ ];
 
-          modules-right = [
-          ];
+          modules-right = [ ];
 
           "hyprland/workspaces" = import ./modules/workspace-circles.nix;
           "clock" = import ./modules/clock.nix;

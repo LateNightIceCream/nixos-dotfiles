@@ -5,22 +5,21 @@ let
   enable = cfg.enable && config.gtk.enable;
 
   # stupid version but idk how to capitalize it
-  themeKindCapitalized = builtins.replaceStrings ["l" "d"] ["L" "D"] "${config.colorScheme.kind}";
+  themeKindCapitalized = builtins.replaceStrings [ "l" "d" ] [ "L" "D" ]
+    "${config.colorScheme.kind}";
   themeName = "Colloid-Custom-${themeKindCapitalized}";
   colorScheme = config.colorScheme;
 
-in
-{
+in {
 
   options.gtk.myopts.theme.colloid = {
     enable = lib.mkEnableOption "enable custom colloid gtk theme";
   };
 
-
   config = lib.mkIf enable {
 
     gtk.theme = {
-      name = themeName; 
+      name = themeName;
       package = pkgs.callPackage ./theme/pkg { inherit colorScheme; };
     };
 
@@ -34,5 +33,5 @@ in
     home.sessionVariables.GTK_THEME = "Colloid-Custom";
 
   };
-  
+
 }

@@ -1,4 +1,1 @@
-[
-  ./minihor
-  ./minivert
-]
+[ ./minihor ./minivert ]

@@ -1,3 +1,1 @@
-{
-  zenbones = import ./zenbones.nix;
-}
+{ zenbones = import ./zenbones.nix; }

@@ -1,10 +1,9 @@
-{ lib, config, pkgs, outputs, ...}:
+{ lib, config, pkgs, outputs, ... }:
 
 let
   cfg = config.programs.kitty.myopts.theme.fancy;
   enable = config.programs.kitty.enable && cfg.enable;
-in
-{
+in {
   options.programs.kitty.myopts.theme.fancy = {
     enable = lib.mkEnableOption "enable kitty fancy theme";
   };
@@ -21,7 +20,8 @@ in
       #bold_font = "JuliaMono Bold";
 
       # symbol_map codepoints Font Family Name
-      symbol_map  = "U+F264,U+F2FA,U+F510,U+F20B,U+F28E,U+F42F,U+F230,U+F1FD,U+F1EF lucide";
+      symbol_map =
+        "U+F264,U+F2FA,U+F510,U+F20B,U+F28E,U+F42F,U+F230,U+F1FD,U+F1EF lucide";
 
       window_padding_width = "8 24";
 

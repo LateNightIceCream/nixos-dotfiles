@@ -1,40 +1,31 @@
 { config, pkgs, inputs, user, ... }:
 
 {
-    programs.waybar = {
+  programs.waybar = {
 
-      style = (import ./style.nix.css) {inherit config;};
+    style = (import ./style.nix.css) { inherit config; };
 
-      settings = {
+    settings = {
 
-        mainBar = {
-          layer = "top";
-          position = "top";
-          height = 32;
+      mainBar = {
+        layer = "top";
+        position = "top";
+        height = 32;
 
-          modules-left = [
-            "wlr/workspaces"
-          ];
+        modules-left = [ "wlr/workspaces" ];
 
-          modules-center = [
-          ];
+        modules-center = [ ];
 
-          modules-right = [
-            "battery"
-            "pulseaudio"
-            "backlight"
-            "clock"
-          ];
+        modules-right = [ "battery" "pulseaudio" "backlight" "clock" ];
 
-          "wlr/workspaces" = import ../../modules/workspace.nix;
-          "backlight" = import ../../modules/backlight.nix;
-          "clock" = import ../../modules/clock.nix;
-          "pulseaudio" = import ../../modules/pulseaudio.nix;
-
-        };
+        "wlr/workspaces" = import ../../modules/workspace.nix;
+        "backlight" = import ../../modules/backlight.nix;
+        "clock" = import ../../modules/clock.nix;
+        "pulseaudio" = import ../../modules/pulseaudio.nix;
 
       };
-    };
-}
 
+    };
+  };
+}
 

@@ -3,8 +3,7 @@
 let
   cfg = config.programs.firefox.myopts.theme.sideberry;
   enable = cfg.enable && config.programs.firefox.enable;
-in
-{
+in {
 
   options.programs.firefox.myopts.theme.sideberry = {
 
@@ -18,19 +17,20 @@ in
       type = lib.types.str;
     };
 
-    tridactyl.enable = lib.mkEnableOption "enable tridactyl theming (currently WIP)";
+    tridactyl.enable =
+      lib.mkEnableOption "enable tridactyl theming (currently WIP)";
 
   };
-  
 
   config = lib.mkIf enable {
 
     programs.firefox.profiles = {
 
       ${cfg.profile} = {
-          userContent = lib.mkIf cfg.tridactyl.enable ((import ./trydactyl.css.nix) { inherit config; });
+        userContent = lib.mkIf cfg.tridactyl.enable
+          ((import ./trydactyl.css.nix) { inherit config; });
 
-          userChrome = ''
+        userChrome = ''
           /* hides the native tabs */
           #TabsToolbar {
             visibility: collapse !important;
@@ -52,7 +52,7 @@ in
             height: 14px !important;
             opacity: 0.6 !important;
           }
-      '';
+        '';
       };
     };
 

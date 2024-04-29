@@ -2,19 +2,18 @@
 
 {
 
-	home.username = "${user}";
-	home.homeDirectory = "/home/${user}";
-	home.stateVersion = "23.05";
-
+  home.username = "${user}";
+  home.homeDirectory = "/home/${user}";
+  home.stateVersion = "23.05";
 
   ## -----------------------------------------------------------------------
-	## USER PACKAGES
+  ## USER PACKAGES
   ## -----------------------------------------------------------------------
 
-	home.packages = with pkgs; [
+  home.packages = with pkgs; [
     neofetch
     kitty
-		gnome.nautilus	
+    gnome.nautilus
     gnome.gnome-calendar
     inkscape
     logseq
@@ -96,34 +95,33 @@
     pipes
     cmatrix
     # unstable.zed-editor # maybe in the future .. currently its very very laggy and unresponsive
-	];
-
+  ];
 
   ## -----------------------------------------------------------------------
-	## HOME MANAGER OPTIONS
+  ## HOME MANAGER OPTIONS
   ## -----------------------------------------------------------------------
 
-	programs.home-manager.enable = true;
+  programs.home-manager.enable = true;
 
   # the chosen theme
   lnicThemes.basicTheme.enable = true;
   colorScheme = config.lnicColorSchemes.rosepine.dawn;
   #programs.bash.basicTheme.promptSymbol = "";
 
- 	imports = [
-          nix-colors.homeManagerModules.default
-          inputs.hyprland.homeManagerModules.default
-          outputs.homeManagerModules.lnicThemes
-          outputs.homeManagerModules.lnicColors
-          (import ./modules/programs/editors/nvim)
-          (import ./modules/programs/kitty)
-          (import ./modules/programs/sioyek)
-          (import ./modules/programs/mpd/home.nix)
-          (import ./modules/programs/bash/home.nix)
-          (import ./modules/programs/firefox)
-          (import ./modules/programs/launcher/rofi)
-          (import ./modules/programs/waybar)
-          (import ./modules/desktop/hyprland)
+  imports = [
+    nix-colors.homeManagerModules.default
+    inputs.hyprland.homeManagerModules.default
+    outputs.homeManagerModules.lnicThemes
+    outputs.homeManagerModules.lnicColors
+    (import ./modules/programs/editors/nvim)
+    (import ./modules/programs/kitty)
+    (import ./modules/programs/sioyek)
+    (import ./modules/programs/mpd/home.nix)
+    (import ./modules/programs/bash/home.nix)
+    (import ./modules/programs/firefox)
+    (import ./modules/programs/launcher/rofi)
+    (import ./modules/programs/waybar)
+    (import ./modules/desktop/hyprland)
   ];
 
   programs.firefox.enable = true;
@@ -147,12 +145,12 @@
 
   # Keyboard
   i18n.inputMethod = {
-      enabled = "fcitx5";
-      fcitx5.addons = with pkgs; [
-        fcitx5-gtk
-        fcitx5-configtool
-        fcitx5-with-addons
-        fcitx5-chinese-addons
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      fcitx5-gtk
+      fcitx5-configtool
+      fcitx5-with-addons
+      fcitx5-chinese-addons
     ];
   };
 
@@ -162,9 +160,8 @@
   #xdg.portal = {
   #};
 
-
   ## -----------------------------------------------------------------------
-	## SERVICES
+  ## SERVICES
   ## -----------------------------------------------------------------------
 
   # Notifications
@@ -189,9 +186,7 @@
             "/home/${user}/Documents/"
             "/home/${user}/Sync/hs-logseq"
           ];
-          repositories = [
-            "/mnt/hdd-1/backups/omega/personal.borg"
-          ];
+          repositories = [ "/mnt/hdd-1/backups/omega/personal.borg" ];
         };
 
         retention = {

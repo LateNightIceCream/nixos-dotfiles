@@ -11,7 +11,7 @@ let
   else
     "#${colorScheme.colors.base00}";
 
- my-color-file = ''
+  my-color-file = ''
     // Custom Theme Color Palette
 
     // Red
@@ -85,9 +85,8 @@ let
     // Theme
     \$default-light: \$blue-light;
     \$default-dark: \$blue-dark;
-    '';
-in
-pkgs.colloid-gtk-theme.overrideAttrs {
+  '';
+in pkgs.colloid-gtk-theme.overrideAttrs {
 
   installPhase = ''
     runHook preInstall

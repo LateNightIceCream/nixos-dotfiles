@@ -9,8 +9,8 @@
   "format" = "{icon} {}";
 
   "format-icons" = {
-      "sitting" = "󰽈";
-      "standing" = "";
+    "sitting" = "󰽈";
+    "standing" = "";
   };
 
   # might be better to create a derivation for the script

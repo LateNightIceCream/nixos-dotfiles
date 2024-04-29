@@ -14,9 +14,7 @@
         ripgrep
       ];
 
-      extraPython3Packages = pyPkgs: with pyPkgs; [
-        pylint
-      ];
+      extraPython3Packages = pyPkgs: with pyPkgs; [ pylint ];
 
       plugins = with pkgs.vimPlugins; [
         yankring
@@ -46,7 +44,6 @@
         vimtex
       ];
 
-      
     };
   };
 
@@ -63,11 +60,11 @@
     ];
   };
 
-  home.file.".config/nvim/lua/keybindings.lua".source = ./lua/lua/keybindings.lua;
+  home.file.".config/nvim/lua/keybindings.lua".source =
+    ./lua/lua/keybindings.lua;
   home.file.".config/nvim/lua/options.lua".source = ./lua/lua/options.lua;
   home.file.".config/nvim/lua/plugins".source = ./lua/lua/plugins;
   home.file.".config/nvim/init.lua".source = ./lua/init.lua;
-
 
   # theme module will define the colortheme.lua location
 

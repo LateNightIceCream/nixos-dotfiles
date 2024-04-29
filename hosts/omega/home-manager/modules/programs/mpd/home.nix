@@ -4,7 +4,7 @@ rec {
 
   services.mpd = {
     enable = true;
-    musicDirectory = "/mnt/hdd-1/music/";#"~/Music/";
+    musicDirectory = "/mnt/hdd-1/music/"; # "~/Music/";
     extraConfig = ''
       audio_output {
         type "pipewire"
@@ -21,5 +21,4 @@ rec {
   };
 
 }
-
 

@@ -17,12 +17,11 @@ let
   base13 = getCol "base0D";
   base14 = getCol "base0E";
   base15 = getCol "base0F";
-in
-''
-require('base16-colorscheme').setup({
-  base00 = '#${base00}', base01 = '#${base01}', base02 = '#${base02}', base03 = '#${base03}',
-  base04 = '#${base04}', base05 = '#${base05}', base06 = '#${base06}', base07 = '#${base07}',
-  base08 = '#${base08}', base09 = '#${base09}', base0A = '#${base10}', base0B = '#${base11}',
-  base0C = '#${base12}', base0D = '#${base13}', base0E = '#${base14}', base0F = '#${base15}'
-})
+in ''
+  require('base16-colorscheme').setup({
+    base00 = '#${base00}', base01 = '#${base01}', base02 = '#${base02}', base03 = '#${base03}',
+    base04 = '#${base04}', base05 = '#${base05}', base06 = '#${base06}', base07 = '#${base07}',
+    base08 = '#${base08}', base09 = '#${base09}', base0A = '#${base10}', base0B = '#${base11}',
+    base0C = '#${base12}', base0D = '#${base13}', base0E = '#${base14}', base0F = '#${base15}'
+  })
 ''

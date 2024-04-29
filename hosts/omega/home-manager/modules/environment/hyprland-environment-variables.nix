@@ -1,4 +1,4 @@
-{ config, pkgs, ...  }:
+{ config, pkgs, ... }:
 
 {
 
@@ -19,7 +19,7 @@
       #QT_AUTO_SCREEN_SCALE_FACTOR = "1";
       CLUTTER_BACKEND = "wayland";
       #KITTY_ENABLE_WAYLAND = "1";
-      
+
       XDG_CURRENT_DESKTOP = "Hyprland";
       XDG_SESSION_DESKTOP = "Hyprland";
       XDG_SESSION_TYPE = "wayland";

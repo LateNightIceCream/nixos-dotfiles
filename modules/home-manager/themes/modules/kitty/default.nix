@@ -1,4 +1,1 @@
-[
-  ./basic
-  ./fancy
-]
+[ ./basic ./fancy ]

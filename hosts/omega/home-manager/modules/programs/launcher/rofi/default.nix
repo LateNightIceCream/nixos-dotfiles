@@ -1,12 +1,5 @@
-{ config, pkgs, ... }:
-{
-  imports = [
-    (import ./config)
-  ];
+{ config, pkgs, ... }: {
+  imports = [ (import ./config) ];
 
-  home = {
-    packages = with pkgs; [
-      rofi-wayland
-    ];
-  };
+  home = { packages = with pkgs; [ rofi-wayland ]; };
 }

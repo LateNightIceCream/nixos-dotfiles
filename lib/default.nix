@@ -8,24 +8,19 @@ rec {
   # readDirsToStrs :: path -> listOf str
   # reads only the directories in the base path
   readDirsToStrs = basePath:
-    (lib.attrNames 
-      (lib.filterAttrs (n: v: v == "directory") 
-        (builtins.readDir basePath)));
-
+    (lib.attrNames
+      (lib.filterAttrs (n: v: v == "directory") (builtins.readDir basePath)));
 
   # like readDirsToStrs except converts
   # the strings to paths
   # readDirsToPaths :: path -> listOf path
-  readDirsToPaths = basePath: 
-    map (x: lib.path.append basePath x) 
-      (readDirsToStrs basePath);
+  readDirsToPaths = basePath:
+    map (x: lib.path.append basePath x) (readDirsToStrs basePath);
 
-  
   # creates theme module imports list 
   # for use in module/home-manager/themes/themes
   # mkThemeImports :: path -> listOf path
-  mkThemeImports = modDir: 
-    lib.lists.flatten
-      (map (dir: import dir) (readDirsToPaths modDir));
+  mkThemeImports = modDir:
+    lib.lists.flatten (map (dir: import dir) (readDirsToPaths modDir));
 
 }

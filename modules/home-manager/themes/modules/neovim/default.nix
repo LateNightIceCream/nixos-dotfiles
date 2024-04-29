@@ -1,4 +1,1 @@
-[
-  ./basic
-  ./bones
-]
+[ ./basic ./bones ]
