@@ -1,0 +1,4 @@
+[
+  ./launcher/basic
+  ./launcher/fullscreen
+]

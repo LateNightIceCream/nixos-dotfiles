@@ -1,0 +1,3 @@
+{
+  zenbones = import ./zenbones.nix;
+}

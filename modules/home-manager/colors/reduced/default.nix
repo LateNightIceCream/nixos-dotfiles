@@ -1,0 +1,3 @@
+{
+  reduced = import ./reduced.nix;
+}

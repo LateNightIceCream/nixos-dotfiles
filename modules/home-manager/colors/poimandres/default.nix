@@ -1,0 +1,3 @@
+{
+  poimandres = import ./poimandres.nix;
+}

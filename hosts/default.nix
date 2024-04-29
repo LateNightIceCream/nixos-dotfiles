@@ -1,35 +1,49 @@
-{ system, self, nixpkgs, pkgs, pkgs-unstable, inputs, user, ... }:
+{ system, self, nixpkgs, pkgs, inputs, outputs, ... }:
 
 let
-  # colors = import ../modules/themes/default/colors.nix;
   nix-colors = inputs.nix-colors;
 in
 {
 
-  omicron = nixpkgs.lib.nixosSystem {
+  omega = 
+  let
+    user = "zamza";
+  in
+  nixpkgs.lib.nixosSystem {
 
     inherit system;
-    specialArgs = { inherit inputs user; };
+    specialArgs = { inherit inputs outputs user; };
 
     modules = [
 
-      ./omicron/configuration.nix
+      ./omega/nixos/configuration.nix
 
-      inputs.hyprland.nixosModules.default
-
-      ../modules/desktop/hyprland
+      # remove this when home....xdg.portal actually works (currently, option cannot be found)
+      ./omega/nixos/modules/hyprland
 
       inputs.home-manager.nixosModules.home-manager
       {
         home-manager = {
 
-          useGlobalPkgs = true;
+          # copy pkgs as well as all overlays from the global pkgs
+          useGlobalPkgs = true; 
+
           useUserPackages = true;
 
-          extraSpecialArgs = { inherit inputs user nix-colors; };
-          users.${user} = import ./omicron/home.nix;
+          extraSpecialArgs = { 
+            inherit inputs outputs user nix-colors; 
+
+            # make our lib available in home-manager's lib
+            # this might not be the best solution but it works for now
+            lib = pkgs.lib.extend (final: prev: inputs.home-manager.lib // 
+                import ../lib { lib = prev // inputs.home-manager.lib; }
+            );
+
+          };
+          users.${user} = import ./omega/home-manager;
 
         };
+
       }
 
     ];
@@ -37,39 +51,9 @@ in
   };
 
 
-  omega = nixpkgs.lib.nixosSystem {
-
-    inherit system;
-    specialArgs = { inherit inputs user; };
-
-    modules = [
-
-      ./omega/configuration.nix
-
-      inputs.hyprland.nixosModules.default
-
-      ../modules/desktop/hyprland-nvidia
-
-      inputs.home-manager.nixosModules.home-manager
-      {
-        home-manager = {
-
-          useGlobalPkgs = true;
-          useUserPackages = true;
-
-          extraSpecialArgs = { inherit inputs user nix-colors pkgs-unstable; };
-          users.${user} = import ./omega/home.nix;
-
-        };
-
-        nixpkgs.overlays = [ 
-          self.overlays.default 
-        ] ++ (import ../overlays) { inherit pkgs; importColors = import ../modules/themes/default/colorscheme.nix; };
-
-      }
-
-    ];
-
-  };
-
+  #omicron = nixpkgs.lib.nixosSystem {
+  #  inherit system;
+  #  specialArgs = { inherit inputs user; };
+  #};
+  
 }

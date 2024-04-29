@@ -1,0 +1,108 @@
+{config, ...}:
+''
+* {
+    border: none;
+    border-radius: 0px;
+    /*font-family: VictorMono, Iosevka Nerd Font, Noto Sans CJK;*/
+    font-family: "JetBrains Mono", "Noto Sans CJK HK", "Font Awesome 5 Free"; /*"lucide";*/
+    font-size: 10px;
+    font-style: normal;
+    min-height: 0px;
+}
+
+window#waybar {
+    background: #${config.colorScheme.colors.base00};
+    background: transparent;
+    /*background: rgba(30, 30, 46, 0.5);*/
+    color: #${config.colorScheme.colors.base05};
+    /*padding-top: 8px;*/
+    margin-top: 0px;
+    border-radius: 0px 0px 0px 0px;
+}
+
+#workspaces {
+	background: #${config.colorScheme.colors.base00};
+  border-radius: 0px;
+  border-radius: 0px 20px 20px 0px;
+  padding-left: 0px;
+  padding-right: 16px;
+}
+
+#workspaces button {
+    padding: 8px;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+    margin-top: 2px;
+    border-radius: 0px;
+    color: #928374;
+}
+
+#workspaces button.active {
+    color: #${config.colorScheme.colors.base05};
+    background-color: #${config.colorScheme.colors.base07};
+    border-radius: 16px;
+    /*border: solid 2px #${config.colorScheme.colors.base02};*/
+    /*border: 1px solid #${config.colorScheme.colors.base07};*/
+}
+
+#workspaces button:hover {
+  background-color: #${config.colorScheme.colors.base08};
+  color: #${config.colorScheme.colors.base00};
+	border-radius: 16px;
+}
+
+#custom-date {
+	color: #D3869B;
+}
+
+#tray {
+    background: #282828;
+    /*margin: 5px 5px 5px 5px;*/
+    border-radius: 16px;
+    padding: 0px 5px;
+    /*border-right: solid 1px #282738;*/
+}
+
+#clock {
+    color: #${config.colorScheme.colors.base05};
+    background-color: #${config.colorScheme.colors.base00};
+    /*border: 1px solid #${config.colorScheme.colors.base02};*/
+    border-radius: 20px 0px 0px 20px;
+    padding-left: 20px;
+    padding-right: 8px;
+    margin-left: 16px;
+    margin-bottom: 0px;
+    font-weight: bold;
+    /*border-left: solid 1px #282738;*/
+}
+
+
+#pulseaudio {
+    background: #${config.colorScheme.colors.base00};
+    color: #${config.colorScheme.colors.base05};
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+#pulseaudio.muted {
+    background: transparent;
+    color: #928374;
+    border-radius: 8px;
+    margin-left: 0px;
+}
+
+#window {
+    background: #282828;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 16px;
+    /*border-left: solid 1px #282738;*/
+    /*border-right: solid 1px #282738;*/
+    /*margin-top: 5px;*/
+    margin-bottom: 5px;
+    font-weight: normal;
+    font-style: normal;
+}
+
+''
