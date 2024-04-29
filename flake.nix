@@ -12,25 +12,26 @@
     nix-colors.url = "github:/Misterio77/nix-colors";
   };
 
-  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, home-manager, ... }: 
-  let
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, ... }:
+    let
 
-    inherit (self) outputs;
+      inherit (self) outputs;
 
-    system = "x86_64-linux";
+      system = "x86_64-linux";
 
-    pkgs = import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-      overlays = [
-      ];
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+        overlays = [ ];
+      };
+
+    in {
+      overlays = import ./overlays { inherit inputs; };
+      homeManagerModules = import ./modules/home-manager;
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt;
+
+      nixosConfigurations =
+        import ./hosts { inherit system self nixpkgs pkgs inputs outputs; };
+
     };
-
-  in
-  {
-
-    overlays = import ./overlays { inherit inputs; };
-    homeManagerModules = import ./modules/home-manager;
-    nixosConfigurations = import ./hosts { inherit system self nixpkgs pkgs inputs outputs; };
-  };
 }
