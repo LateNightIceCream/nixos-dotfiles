@@ -49,6 +49,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
   #boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   boot.tmp.cleanOnBoot = true;
@@ -138,10 +139,12 @@
     scons
     skopeo
     lshw
-    cachix
-
+    openssl
+    #unstable.libnvidia-container
+    #unstable.nvidia-docker
+    #unstable.nvidia-container-toolkit
+    docker-compose
     (blender.override { cudaSupport = true; })
-
   ];
 
   fonts.packages = with pkgs;
@@ -156,6 +159,7 @@
       font-awesome_5
       nerdfonts
       mononoki
+      cozette
     ] ++ [ lucide-icon-font ];
 
   programs.dconf.enable = true;

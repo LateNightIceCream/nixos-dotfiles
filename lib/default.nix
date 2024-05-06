@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, inputs, ... }:
 
 # note: this lib extension will only be available in
 # home-manager modules, i.e. home-manager.lib and not
@@ -22,5 +22,15 @@ rec {
   # mkThemeImports :: path -> listOf path
   mkThemeImports = modDir:
     lib.lists.flatten (map (dir: import dir) (readDirsToPaths modDir));
+
+
+  # converts hex string "hex" to "rgba(r, g, b, a)"
+  # where a is given by string "a"
+  # hexToRgba :: str -> str -> str
+  hexToRgba = hex: alpha: 
+    let
+      rgbStr = (inputs.nix-colors.lib.conversions.hexToRGBString "," hex);
+    in
+    "rgba(${rgbStr},${alpha})";
 
 }

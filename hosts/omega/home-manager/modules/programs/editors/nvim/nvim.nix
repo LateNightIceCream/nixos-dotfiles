@@ -42,6 +42,7 @@
         rustaceanvim
         julia-vim
         vimtex
+        hop-nvim
       ];
 
     };

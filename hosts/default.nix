@@ -32,7 +32,7 @@ in {
             # this might not be the best solution but it works for now
             lib = pkgs.lib.extend (final: prev:
               inputs.home-manager.lib
-              // import ../lib { lib = prev // inputs.home-manager.lib; });
+              // import ../lib { lib = prev // inputs.home-manager.lib; inherit inputs; });
 
           };
           users.${user} = import ./omega/home-manager;

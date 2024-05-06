@@ -92,6 +92,9 @@ in {
     (callPackage gresize { })
     hyprpaper
     waybar
+    #kdePackages.qtwayland
+    libsForQt5.qt5.qtwayland
+    qt6.qtwayland
   ];
 
   qt = {

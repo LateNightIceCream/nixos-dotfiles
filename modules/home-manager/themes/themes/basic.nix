@@ -18,8 +18,12 @@
     programs.kitty.myopts.theme.basic.enable = true;
     programs.rofi.myopts.theme.launcher.fullscreen.enable = true;
     programs.sioyek.myopts.theme.basic.enable = true;
-    programs.waybar.myopts.theme.minihor.enable = true;
-    programs.waybar.myopts.theme.minihor.position = "top";
+    
+    #programs.waybar.myopts.theme.minihor.enable = true;
+    #programs.waybar.myopts.theme.minihor.position = "top";
+    programs.waybar.myopts.theme.minivert.enable = true;
+    programs.waybar.myopts.theme.minivert.position = "left";
+    programs.waybar.myopts.theme.minivert.vertPosition = "bottom";
 
     programs.firefox.myopts.theme.sideberry.enable = true;
     # profile to apply the firefox theme to

@@ -94,6 +94,9 @@
     cava
     pipes
     cmatrix
+    rofi-pulse-select
+    easyeffects
+    ipe
     # unstable.zed-editor # maybe in the future .. currently its very very laggy and unresponsive
   ];
 

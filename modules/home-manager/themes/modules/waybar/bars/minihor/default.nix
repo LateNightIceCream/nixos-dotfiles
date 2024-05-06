@@ -17,7 +17,7 @@ in {
   config = lib.mkIf enable {
 
     home.file.".config/waybar/scripts/sit-stand-reminder.py".source =
-      ./modules/scripts/sit-stand-reminder.py;
+      ../../modules/scripts/sit-stand-reminder.py;
 
     programs.waybar = {
 
@@ -33,21 +33,14 @@ in {
           margin-top = if cfg.position == "top" then 8 else 0;
           margin-bottom = if cfg.position == "bottom" then 8 else 0;
 
-          margin-left = 852;
-          margin-right = 733;
+          modules-left = [ ];
 
-          modules-left = [
-            # will only work with waybar>9.22 -> lets wait for nixpkgs stable
-            "clock"
-            "hyprland/workspaces"
-          ];
-
-          modules-center = [ ];
+          modules-center = [ "clock" "hyprland/workspaces" ];
 
           modules-right = [ ];
 
-          "hyprland/workspaces" = import ./modules/workspace-circles.nix;
-          "clock" = import ./modules/clock.nix;
+          "hyprland/workspaces" = import ../../modules/workspace/workspace-circles.nix;
+          "clock" = import ../../modules/clock/clock.nix;
           #"custom/sit-stand-reminder" = import ../../modules/sit-stand-reminder.nix;
 
         };

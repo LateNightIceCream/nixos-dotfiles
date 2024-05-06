@@ -1,1 +1,1 @@
-[ ./minihor ./minivert ]
+[ ./bars/minihor ./bars/minivert ]
